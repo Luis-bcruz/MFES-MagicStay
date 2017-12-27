@@ -1,16 +1,16 @@
 class User
 types
 	      public string = Utilities`string;
-values
--- TODO Define values here
+	      public title = <Mr> | <Miss>;
 instance variables
-        public title: string;
+        public userTitle: title;
         public firstName: string;
         public lastName: string;
         public email: string;
         public country: string;
         public phoneNumber : set of nat;
         public password: string;
+        public loggedIn : bool := false;
         
         inv firstName <> "";
         inv lastName <> "";
@@ -20,9 +20,41 @@ instance variables
         inv password <> "";
         
 operations
--- TODO Define operations here
+
+	
+-- User Constructor
+public User: title*string*string*string*string*set of nat*string ==> User
+  User(t,fn,ln,e,c,ph,pass) == 
+  (
+  	userTitle := t;
+    firstName := fn;
+    lastName := ln;
+    email := e;
+    country := c;
+    phoneNumber := ph;
+		password := pass;
+		return self;
+	);
+
+--register User
+--public registerUser	:
+
+-- login User
+--public logIn : (UserEmail, UserPass) ==> bool
+--	logIn(UserEmail, UserPass) ==
+--	(
+--		if(loggedIn == false)
+--		then (loggedIn)
+
+-- get user email
+public getEmail : () ==> string
+	getEmail() == return  email;
+
+-- get user password
+public getPassword : () ==> string
+	getPassword() == return password;			
+	
+				
 functions
--- TODO Define functiones here
 traces
--- TODO Define Combinatorial Test Traces here
 end User
