@@ -1,23 +1,23 @@
 class User
 types
-	      public string = Utilities`string;
-	      public title = <Mr> | <Miss>;
+	public string = Utilities`string;
+	public title = <Mr> | <Miss>;
 instance variables
-        public userTitle: title;
-        public firstName: string;
-        public lastName: string;
-        public email: string;
-        public country: string;
-        public phoneNumber : set of nat;
-        public password: string;
-        public loggedIn : bool := false;
+	private userTitle: title;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private country: string;
+  private phoneNumber : set of nat;
+  private password: string;
+  private loggedIn : bool := false;
         
-        inv firstName <> "";
-        inv lastName <> "";
-        inv email <> "";
-        inv country <> "";
-        inv phoneNumber <> {};
-        inv password <> "";
+  inv firstName <> "";
+  inv lastName <> "";
+  inv email <> "";
+  inv country <> "";
+  inv phoneNumber <> {};
+  inv password <> "";
         
 operations
 
@@ -35,16 +35,6 @@ public User: title*string*string*string*string*set of nat*string ==> User
 		password := pass;
 		return self;
 	);
-
---register User
---public registerUser	:
-
--- login User
---public logIn : (UserEmail, UserPass) ==> bool
---	logIn(UserEmail, UserPass) ==
---	(
---		if(loggedIn == false)
---		then (loggedIn)
 
 -- get user email
 public getEmail : () ==> string

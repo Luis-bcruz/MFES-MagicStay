@@ -1,14 +1,37 @@
 class Property
 types
--- TODO Define types here
-values
--- TODO Define values here
+	public string = Utilities`string;
+	public apartType = <Studio> | <Apartment> | <privateRoom>;
+
 instance variables
--- TODO Define instance variables here
+	private city : string;
+	private type : apartType;
+	private numRooms : nat1;
+	private deposit : nat1;
+	private numStars : nat1;
+	private host: User;
+	
+	inv city <> "";
+	
 operations
--- TODO Define operations here
+	--Constructor
+	public Property : string*apartType*nat1*nat1*nat1*User ==> Property
+		Property(c,t,nr,d,ns,h) ==
+		(
+			city := c;
+			type := t;
+			numRooms := nr;
+			deposit := d;
+			numStars := ns;
+			host := h;
+			return self;
+		)
+		
+	--add a property
+	
+
+
+
 functions
--- TODO Define functiones here
 traces
--- TODO Define Combinatorial Test Traces here
 end Property

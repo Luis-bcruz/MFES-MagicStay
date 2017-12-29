@@ -1,14 +1,31 @@
 class Event
 types
--- TODO Define types here
-values
--- TODO Define values here
+	public string = Utilities`string;
+
 instance variables
--- TODO Define instance variables here
+	private name : string;
+	private country : string;
+	private city : string;
+	private category : string;
+	private startDate : string;
+	private endDate : string;
+	
 operations
--- TODO Define operations here
+	--Constructor
+	public Event : string*string*string*string*string*string ==> Event
+		Event(n,c,ct,cat,sd,ed) ==
+		(
+			name := n;
+			country := c;
+			city := ct;
+			category := cat;
+			startDate := sd;
+			endDate := ed;
+			return self;
+		)
+
+
+
 functions
--- TODO Define functiones here
 traces
--- TODO Define Combinatorial Test Traces here
 end Event

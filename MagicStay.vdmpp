@@ -1,0 +1,38 @@
+class MagicStay
+types
+-- TODO Define types here
+
+instance variables
+	private users : set of User := {};
+	private properties : set of Property := {};
+	private events : set of Event := {};
+
+operations
+	-- Contructor
+	public MagicStay : () ==> MagicStay
+	 MagicStay() == return self
+	 post users = {};
+
+	--Register a User
+	public registerUser : User ==> ()
+		registerUser(user) == users := users union {user}
+		pre user not in set users
+		post users = users~ union {user};
+		
+	--Add a Property
+	public addProperty : Property ==> ()
+		addProperty(property) == properties := properties union {property}
+		pre property not in set properties
+		post properties = properties~ union {property};
+
+	--Add an Event
+	public addEvent : Event ==> ()
+		addEvent(event) == events := events union {event}
+		pre event not in set events
+		post events = events~ union {event};
+		
+		
+		
+functions
+traces
+end MagicStay
