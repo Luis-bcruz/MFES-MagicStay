@@ -1,0 +1,352 @@
+class MagicStay
+types
+	public string = Utilities`string;
+
+instance variables
+	private users : set of User := {};
+	private properties : set of Property := {};
+	private events : set of Event := {};
+
+operations
+	-- Contructor
+	public MagicStay : () ==> MagicStay
+	 MagicStay() == return self
+	 post users = {} and properties = {} and events = {};
+	
+	--Register a User
+	public registerUser : User ==> ()
+		registerUser(user) == users := users union {user}
+		pre user not in set users
+		post users = users~ union {user};
+		
+	--Remove a User
+	public removeUser : User ==> ()
+		removeUser(user) == users := users \ {user}
+		pre user in set users
+		post users = users~ \ {user};
+		
+	--get all the users registered in MagicStay
+	public getUsers :() ==> set of User  
+		getUsers() == (return users);
+		
+	--Add a Property
+	public addProperty : Property ==> ()
+		addProperty(property) == properties := properties union {property}
+		pre property not in set properties
+		post properties = properties~ union {property};
+		
+	--remove a Property
+	public removeProperty : Property ==> ()
+		removeProperty(property) == properties := properties \ {property}
+		pre property in set properties
+		post properties = properties~ \ {property};
+		
+	--get all the properties available in MagicStay
+	public getProperties :() ==> set of Property  
+		getProperties() == (return properties);
+
+	--Add an Event
+	public addEvent : Event ==> ()
+		addEvent(event) == events := events union {event}
+		pre event not in set events
+		post events = events~ union {event};
+
+	--remove a Event
+	public removeEvent : Event ==> ()
+		removeEvent(event) == events := events \ {event}
+		pre event in set events
+		post events = events~ \ {event};
+		
+	--get all the events available in MagicStay
+	public getEvents :() ==> set of Event  
+		getEvents() == (return events);
+	
+			
+	--Search properties by city
+	public searchPropertyByCity : string ==> set of Property
+		searchPropertyByCity(c) ==
+		(
+			dcl res: set of Property := {};
+				for all p in set properties do 
+					if (p.getCity() = c)
+						then (res := {p} union res);
+			return res
+		)
+		pre c <> "";
+		
+	--Search for properties by event
+	public searchPropertyByEvent : string ==> set of Property
+		searchPropertyByEvent(n) ==
+		(
+			dcl res: set of Property := {};
+				for all e in set events do
+					if(e.getName() = n)
+						then(
+									dcl ct: string := e.getCity();
+									for all p in set properties do
+										if(p.getCity() = ct)
+											then (res := {p} union res)
+								);
+			return res
+		)
+		pre n <> "";
+		
+	--search events by category
+	public seachEventByCat : string ==> set of Event
+		seachEventByCat(c) == 
+		(
+			dcl res: set of Event := {};
+				for all e in set events do
+					if(e.getCat() = c)
+						then (res := {e} union res);
+			return res
+		)
+		pre c <> "";
+		
+	--get the best property from a certain city
+	public getBestProperty : string ==> Property
+		getBestProperty(c) ==
+		(
+			dcl best : [Property] := nil;
+			for all p in set properties do
+				if (best = nil or p.getNumStars() > best.getNumStars() and p.getCity() = c) then
+					best := p;
+			return best
+		)
+		pre card properties > 0
+		post RESULT in set properties;
+	
+end MagicStay
+
+class MagicStayTest is subclass of MyTestCase
+
+instance variables
+
+	m : MagicStay := new MagicStay();
+	user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+	user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+	user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+	user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+	
+	date1 : Date := new Date(2017,2,2);
+	date2 : Date := new Date(2017,2,3);
+	date3 : Date := new Date(2017,3,22);
+	date4 : Date := new Date(2017,3,24);
+	date5 : Date := new Date(2017,12,30);
+	
+	event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+	event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+	event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+	event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+	
+	prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+	prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+	prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+	prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+	prop4 : Property := new Property("cambridge",<Apartment>,3,730,5,user4,event3);
+
+operations
+
+	private testRegisterUser: () ==> ()
+		testRegisterUser() ==
+		(
+			dcl u : set of User := {};
+			u := u union {user1};
+			u := u union {user2};
+			u := u union {user3};
+			u := u union {user4};
+			
+			m.registerUser(user1);
+			m.registerUser(user2);
+			m.registerUser(user3);
+			m.registerUser(user4);
+			
+			assertEqual(m.getUsers(),u);
+			
+			m.removeUser(user1);
+			m.removeUser(user2);
+			m.removeUser(user3);
+			m.removeUser(user4)
+		
+		);
+	
+	private testRemoveUser : () ==> ()
+		testRemoveUser() ==
+		(			
+			dcl ur : set of User := {user3,user4};
+			m.registerUser(user1);
+			m.registerUser(user2);
+			m.registerUser(user3);
+			m.registerUser(user4);
+			
+			m.removeUser(user1);
+			m.removeUser(user2);
+			
+			
+			assertEqual(m.getUsers(),ur);
+			
+			m.removeUser(user3);
+			m.removeUser(user4);
+		);
+	
+	private testGetUsers : () ==> ()
+		testGetUsers() == 
+		(
+			dcl u : set of User := {user1,user2,user3,user4};
+	    m.registerUser(user1);
+			m.registerUser(user2);
+			m.registerUser(user3);
+			m.registerUser(user4);
+	    
+	    assertEqual(m.getUsers(), u)
+		);
+	
+	private testAddProperty : () ==> ()
+		testAddProperty() ==
+		(
+			dcl p : set of Property := {prop1,prop2,prop3,prop4,prop5};
+			
+			m.addProperty(prop1);
+			m.addProperty(prop2);
+			m.addProperty(prop3);
+			m.addProperty(prop4);
+			m.addProperty(prop5);
+			
+			assertEqual(m.getProperties(),p)
+			
+		
+		);
+	
+	private testRemoveProperty : () ==> ()
+		testRemoveProperty() ==
+		(
+			dcl p : set of Property := {};
+			p := p union {prop5};
+			
+			m.removeProperty(prop1);
+			m.removeProperty(prop2);
+			m.removeProperty(prop3);
+			m.removeProperty(prop4);
+			
+			assertEqual(m.getProperties(),p);
+			
+			m.addProperty(prop1);
+			m.addProperty(prop2);
+			m.addProperty(prop3);
+			m.addProperty(prop4)
+		);
+	
+	
+	private testGetProperties : () ==> ()
+		testGetProperties() == 
+		(
+			dcl p : set of Property := {};
+	    p := p union {prop1};
+	    p := p union {prop2};
+	    p := p union {prop3};
+	    p := p union {prop4};
+	    p := p union {prop5};
+	      
+	    assertEqual(m.getProperties(), p)
+		);
+	
+	private testAddEvent : () ==> ()
+		testAddEvent() ==
+		(
+			dcl e : set of Event := {};
+			e := e union {event1};
+			e := e union {event2};
+			e := e union {event3};
+			e := e union {event4};
+			
+			m.addEvent(event1);
+			m.addEvent(event2);
+			m.addEvent(event3);
+			m.addEvent(event4);
+
+			assertEqual(m.getEvents(),e)
+		);
+	
+		
+	private testRemoveEvent : () ==> ()
+		testRemoveEvent() ==
+		(
+			dcl e : set of Event := {};
+			e := e union {event2};
+			e := e union {event3};
+
+			
+			m.removeEvent(event1);
+			m.removeEvent(event4);
+			
+			assertEqual(m.getEvents(),e)
+		);
+	
+	private testGetEvents : () ==> ()
+		testGetEvents() == 
+		(
+			dcl e : set of Event := {};
+	    e := e union {event2};
+	    e := e union {event3};
+	    
+	    assertEqual(m.getEvents(), e)
+		);
+	
+	private testSeachPropertyByCity: () ==> ()
+		testSeachPropertyByCity() ==
+		(
+			assertEqual(m.searchPropertyByCity("porto"),{prop1,prop2});
+			assertEqual(m.searchPropertyByCity("rome"),{prop3,prop5});
+			assertEqual(m.searchPropertyByCity("cambridge"),{prop4})
+		);
+		
+	private testSeachPropertyByEvent: () ==> ()
+		testSeachPropertyByEvent() ==
+		(
+			assertEqual(m.searchPropertyByEvent("AI in 2020"),{event1});
+			assertEqual(m.searchPropertyByEvent("Talk a Bit"),{event4})
+		);
+		
+	private testSeachEventByCat: () ==> ()
+		testSeachEventByCat() ==
+		(
+			dcl e : set of Event := {};
+			e := e union {event1};
+			e := e union {event2};
+			e := e union {event3};
+			e := e union {event4};
+			
+			assertEqual(m.seachEventByCat("IT"),e)
+		);
+		
+	private testBestProperty : () ==> ()
+		testBestProperty() ==
+		(
+			assertEqual(m.getBestProperty("porto"),prop2);
+			assertEqual(m.getBestProperty("cambridge"),prop4)
+		);
+	
+	public static main: () ==> ()
+		main() ==
+		(
+			dcl teste : MagicStayTest := new MagicStayTest();
+			teste.testRegisterUser();
+			teste.testRemoveUser();
+			teste.testGetUsers();
+			
+			teste.testAddProperty();
+			teste.testRemoveProperty();
+			teste.testGetProperties();
+			
+			teste.testAddEvent();
+			teste.testRemoveEvent();
+			teste.testGetEvents();
+			
+			teste.testSeachPropertyByCity();
+			--teste.testSeachPropertyByEvent();
+			--teste.testSeachEventByCat();
+			
+			teste.testBestProperty();
+	  );
+	 
+end MagicStayTest

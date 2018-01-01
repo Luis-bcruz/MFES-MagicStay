@@ -1,0 +1,5 @@
+-- Class containing utilities
+class Utilities
+types
+	public string = seq1 of char
+end Utilities

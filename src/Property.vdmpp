@@ -1,0 +1,285 @@
+class Property
+types
+	public string = Utilities`string;
+	public apartType = <Studio> | <Apartment> | <privateRoom>;
+
+instance variables
+	private city : string;
+	private type : apartType;
+	private numRooms : nat1;
+	private deposit : nat1;
+	private numStars : nat;
+	private host: User;
+	private event: Event;
+	private availability : set of Date := {};
+	
+	inv city <> "";
+	
+operations
+	--Constructor
+	public Property : string*apartType*nat1*nat1*nat*User*Event==> Property
+		Property(c,t,nr,d,ns,h,e) ==
+		(
+			city := c;
+			type := t;
+			numRooms := nr;
+			deposit := d;
+			numStars := ns;
+			host := h;
+			event := e;
+			availability := {};
+			return self
+		);
+		
+	-- get property's city
+	public getCity : () ==> string
+		getCity() == return city;
+		
+	-- get property's type
+	public getType : () ==> apartType
+		getType() == return type;
+		
+	-- get property's number of rooms
+	public getNumRooms : () ==> nat1
+		getNumRooms() == return numRooms;
+		
+	-- get property's rent value
+	public getDeposit : () ==> nat1
+		getDeposit() == return deposit;
+		
+	-- get property's number of stars
+	public getNumStars : () ==> nat
+		getNumStars() == return numStars;
+		
+	-- get property's owner
+	public getHost : () ==> User
+		getHost() == return host;
+		
+	-- get property's nearby events
+	public getEvent : () ==> Event
+		getEvent() == return event;
+
+	-- get property's booking dates
+	public getAvailabilities : () ==> set of Date
+		getAvailabilities() == return availability;
+	
+	-- set property's city
+	public setCity : string ==> ()
+		setCity(c) == (city :=c; return);
+		
+	-- set property's type
+	public setType : apartType ==> ()
+		setType(t) == (type :=t; return);
+	
+	-- set property's number of rooms
+	public setNumRooms : nat1 ==> ()
+		setNumRooms(n) == (numRooms := n; return);
+		
+	-- set property's rent value
+	public setDeposit : nat1 ==> ()
+		setDeposit(n) == (deposit := n; return);
+	
+	-- set property's number of stars
+	public setNumStars : nat ==> ()
+		setNumStars(n) == (numStars := n; return);
+		
+	-- set property's owner
+	public setHost : User ==> ()
+		setHost(u) == (host := u; return);
+		
+	-- set property's event
+	public setEvent : Event ==> ()
+		setEvent(e) == (event := e; return);
+
+	-- add a period in which property is booked
+	public addAvalabilty : Date*Date ==> ()
+		addAvalabilty(sd,ed) == 
+		(
+			availability := availability union {sd,ed}
+		);
+		
+	-- remove a period in which property is booked
+	public removeAvalabilty : Date*Date ==> ()
+		removeAvalabilty(sd,ed) == 
+		(
+			availability := availability \ {sd,ed}
+		);
+
+end Property
+
+class PropertyTest is subclass of MyTestCase
+
+instance variables
+	user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+	user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+	user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+	user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+	
+	date1 : Date := new Date(2017,2,2);
+	date2 : Date := new Date(2017,2,3);
+	date3 : Date := new Date(2017,3,22);
+	date4 : Date := new Date(2017,3,24);
+	date5 : Date := new Date(2017,12,30);
+	
+	event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+	event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+	event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+	event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+	
+	prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+	prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+	prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+	prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+	prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+	
+	
+	
+operations
+	-- TEST GETS --
+	private testGetCity : () ==> ()
+		testGetCity() == 
+		(
+			assertEqual(prop1.getCity(), "porto");
+			assertEqual(prop3.getCity(), "rome")
+		);
+		
+	private testGetType : () ==> ()
+		testGetType() == 
+		(
+			assertEqual(prop1.getType(), <Studio>);
+			assertEqual(prop2.getType(), <Apartment>)
+		);
+	
+	private testGetNumRooms : () ==> ()
+		testGetNumRooms() == 
+		(
+			assertEqual(prop1.getNumRooms(), 1);
+			assertEqual(prop2.getNumRooms(), 2)
+		);
+	
+	private testGetDeposit : () ==> ()
+		testGetDeposit() == 
+		(
+			assertEqual(prop1.getDeposit(), 150);
+			assertEqual(prop2.getDeposit(), 300)
+		);
+		
+	private testGetNumStars : () ==> ()
+		testGetNumStars() == 
+		(
+			assertEqual(prop1.getNumStars(), 3);
+			assertEqual(prop2.getNumStars(), 4)
+		);
+		
+	private testGetHost : () ==> ()
+		testGetHost() == 
+		(
+			assertEqual(prop1.getHost(), user1);
+			assertEqual(prop2.getHost(), user2)
+		);
+		
+	private testGetEvent : () ==> ()
+		testGetEvent() == 
+		(
+			assertEqual(prop1.getEvent(), event1);
+			assertEqual(prop2.getEvent(), event1)
+		);
+			
+	-- TEST SETS --
+	
+	private testSetCity: () ==> ()
+		testSetCity() ==
+		(
+			prop1.setCity("paris");
+			prop2.setCity("lisbon")
+		);
+	
+	private testSetType: () ==> ()
+		testSetType() ==
+		(
+			prop1.setType(<privateRoom>);
+			prop2.setType(<privateRoom>)
+		);
+	
+	private testSetNumRooms : () ==> ()
+		testSetNumRooms() == 
+		(
+			prop1.setNumRooms(2);
+			prop2.setNumRooms(3)
+		);
+	
+	private testSetDeposit : () ==> ()
+		testSetDeposit() == 
+		(
+			prop1.setDeposit(400);
+			prop2.setDeposit(500)
+		);
+		
+	private testSetNumStars : () ==> ()
+		testSetNumStars() == 
+		(
+			prop1.setNumStars(1);
+			prop2.setNumStars(1)
+		);
+		
+	private testSetHost : () ==> ()
+		testSetHost() == 
+		(
+			prop1.setHost(user2);
+			prop2.setHost(user1)
+		);
+		
+	private testSetEvent : () ==> ()
+		testSetEvent() == 
+		(
+			prop1.setEvent(event4);
+			prop2.setEvent(event4)
+		);
+		
+		
+	-- TEST ADDS --	
+	/*
+	private testAddAvalilability : () ==> ()
+		testAddAvalilability() ==
+		(
+			assertEqual(prop1.addAvalabilty(date1,date2), {date1,date2});
+			assertEqual(prop2.addAvalabilty(date1,date2), {date1,date2})
+		);
+	*/
+	-- TEST REMOVES --
+	/*
+	private testRemoveAvalilability : () ==> ()
+		testRemoveAvalilability() ==
+		(
+			prop1.addAvalabilty(date1,date2);
+			prop2.addAvalabilty(date1,date2);
+			
+			assertEqual(prop1.removeAvalabilty(date1,date2), {});
+			assertEqual(prop2.removeAvalabilty(date1,date2), {})
+		);
+	*/
+	public static main: () ==> ()
+		main() ==
+		(
+			dcl teste : PropertyTest := new PropertyTest();
+			teste.testGetCity();
+			teste.testGetType();
+			teste.testGetNumRooms();
+			teste.testGetDeposit();
+			teste.testGetNumStars();
+			teste.testGetHost();
+			teste.testGetEvent();
+			
+			teste.testSetCity();
+			teste.testSetType();
+			teste.testSetNumRooms();
+			teste.testSetDeposit();
+			teste.testSetNumStars();
+			teste.testSetHost();
+			teste.testSetEvent();
+			
+			--teste.testAddAvalilability();
+			--teste.testRemoveAvalilability();
+			
+		);
+end PropertyTest
