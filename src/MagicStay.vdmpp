@@ -83,9 +83,9 @@ operations
 					if(e.getName() = n)
 						then(
 									dcl ct: string := e.getCity();
-									for all p in set properties do
-										if(p.getCity() = ct)
-											then (res := {p} union res)
+										for all p in set properties do
+											if(p.getCity() = ct)
+												then (res := {p} union res)
 								);
 			return res
 		)
@@ -279,7 +279,9 @@ operations
 			m.removeEvent(event1);
 			m.removeEvent(event4);
 			
-			assertEqual(m.getEvents(),e)
+			assertEqual(m.getEvents(),e);
+			
+			
 		);
 	
 	private testGetEvents : () ==> ()
@@ -289,7 +291,10 @@ operations
 	    e := e union {event2};
 	    e := e union {event3};
 	    
-	    assertEqual(m.getEvents(), e)
+	    assertEqual(m.getEvents(), e);
+	    
+	    m.addEvent(event1);
+			m.addEvent(event4)
 		);
 	
 	private testSeachPropertyByCity: () ==> ()
@@ -303,8 +308,8 @@ operations
 	private testSeachPropertyByEvent: () ==> ()
 		testSeachPropertyByEvent() ==
 		(
-			assertEqual(m.searchPropertyByEvent("AI in 2020"),{event1});
-			assertEqual(m.searchPropertyByEvent("Talk a Bit"),{event4})
+			assertEqual(m.searchPropertyByEvent("IT and security"),{prop3,prop5});
+			assertEqual(m.searchPropertyByEvent("Talk a Bit"),{prop1,prop2})
 		);
 		
 	private testSeachEventByCat: () ==> ()
@@ -343,8 +348,8 @@ operations
 			teste.testGetEvents();
 			
 			teste.testSeachPropertyByCity();
-			--teste.testSeachPropertyByEvent();
-			--teste.testSeachEventByCat();
+			teste.testSeachPropertyByEvent();
+			teste.testSeachEventByCat();
 			
 			teste.testBestProperty();
 	  );

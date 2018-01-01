@@ -238,26 +238,28 @@ operations
 		
 		
 	-- TEST ADDS --	
-	/*
+	
 	private testAddAvalilability : () ==> ()
 		testAddAvalilability() ==
 		(
-			assertEqual(prop1.addAvalabilty(date1,date2), {date1,date2});
-			assertEqual(prop2.addAvalabilty(date1,date2), {date1,date2})
+			prop1.addAvalabilty(date1,date2);
+			prop2.addAvalabilty(date1,date2);
+			assertEqual(prop1.getAvailabilities(), {date1,date2});
+			assertEqual(prop2.getAvailabilities(), {date1,date2})
 		);
-	*/
+	
 	-- TEST REMOVES --
-	/*
+	
 	private testRemoveAvalilability : () ==> ()
 		testRemoveAvalilability() ==
 		(
-			prop1.addAvalabilty(date1,date2);
-			prop2.addAvalabilty(date1,date2);
+			prop1.removeAvalabilty(date1,date2);
+			prop2.removeAvalabilty(date1,date2);
 			
-			assertEqual(prop1.removeAvalabilty(date1,date2), {});
-			assertEqual(prop2.removeAvalabilty(date1,date2), {})
+			assertEqual(prop1.getAvailabilities(), {});
+			assertEqual(prop2.getAvailabilities(), {})
 		);
-	*/
+	
 	public static main: () ==> ()
 		main() ==
 		(
@@ -278,8 +280,8 @@ operations
 			teste.testSetHost();
 			teste.testSetEvent();
 			
-			--teste.testAddAvalilability();
-			--teste.testRemoveAvalilability();
+			teste.testAddAvalilability();
+			teste.testRemoveAvalilability();
 			
 		);
 end PropertyTest
