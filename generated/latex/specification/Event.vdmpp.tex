@@ -1,0 +1,355 @@
+\begin{vdmpp}[breaklines=true]
+class Event
+types
+ public string = Utilities`string;
+
+instance variables
+ private name : string;
+ private country : string;
+ private city : string;
+ private category : string;
+ private startDate : Date;
+ private endDate : Date;
+ 
+operations
+ --Constructor
+(*@
+\label{Event:15}
+@*)
+ public Event : string*string*string*string*Date*Date ==> Event
+  Event(n,c,ct,cat,sd,ed) ==
+  (
+   name := n;
+   country := c;
+   city := ct;
+   category := cat;
+   startDate := sd;
+   endDate := ed;
+   return self
+  );
+  
+ --get event's name
+(*@
+\label{getName:28}
+@*)
+ public getName : () ==> string
+  getName() == return name;
+  
+ --get event's country where is going to happen
+(*@
+\label{getCountry:32}
+@*)
+ public getCountry : () ==> string
+  getCountry() == return country;
+  
+ --get event's country where is going to happen
+(*@
+\label{getCity:36}
+@*)
+ public getCity : () ==> string
+  getCity() == return city;
+  
+ --get event's Category
+(*@
+\label{getCat:40}
+@*)
+ public getCat : () ==> string
+  getCat() == return category;
+  
+ --get event's starting date
+(*@
+\label{getStartDate:44}
+@*)
+ public getStartDate : () ==> Date
+  getStartDate() == return startDate;
+  
+ --get event's ending date
+(*@
+\label{getEndDate:48}
+@*)
+ public getEndDate : () ==> Date
+  getEndDate() == return endDate;
+ 
+ --set event's name
+(*@
+\label{setName:52}
+@*)
+ public setName : string ==> ()
+  setName(n) == (name := n;return);
+  
+ --set event's country
+(*@
+\label{setCountry:56}
+@*)
+ public setCountry : string ==> ()
+  setCountry(c) == (country := c;return);
+ 
+ --set event's country
+(*@
+\label{setCity:60}
+@*)
+ public setCity : string ==> ()
+  setCity(c) == (city := c;return);
+ 
+ --set event's category
+(*@
+\label{setCategory:64}
+@*)
+ public setCategory : string ==> ()
+  setCategory(c) == (category := c;return);
+  
+ --set event's starting date
+(*@
+\label{setStartDate:68}
+@*)
+ public setStartDate : Date ==> ()
+  setStartDate(d) == (startDate := d;return);
+  
+ --set event's starting date
+(*@
+\label{setEndDate:72}
+@*)
+ public setEndDate : Date ==> ()
+  setEndDate(d) == (endDate := d;return);
+  
+ 
+
+end Event
+
+class EventTest is subclass of MyTestCase
+
+instance variables
+ user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+ user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+ user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+ user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+ 
+ date1 : Date := new Date(2017,2,2);
+ date2 : Date := new Date(2017,2,3);
+ date3 : Date := new Date(2017,3,22);
+ date4 : Date := new Date(2017,3,24);
+ date5 : Date := new Date(2017,12,30);
+ 
+ event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+ event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+ event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+ event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+ 
+ prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+ prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+ prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+ prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+ prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+ 
+
+operations
+-- TEST GETS --
+(*@
+\label{testGetName:107}
+@*)
+ private testGetName: () ==> ()
+  testGetName() == 
+  (
+   assertEqual(event1.getName(), "AI in 2020");
+   assertEqual(event2.getName(), "IT and security")
+  );
+  
+(*@
+\label{testGetCountry:114}
+@*)
+ private testGetCountry : () ==> ()
+  testGetCountry() == 
+  (
+   assertEqual(event1.getCountry(), "portugal");
+   assertEqual(event2.getCountry(), "italy")
+  );
+ 
+(*@
+\label{testGetCity:121}
+@*)
+ private testGetCity : () ==> ()
+  testGetCity() == 
+  (
+   assertEqual(event1.getCity(), "porto");
+   assertEqual(event2.getCity(), "rome")
+  );
+ 
+(*@
+\label{testGetCategory:128}
+@*)
+ private testGetCategory : () ==> ()
+  testGetCategory() == 
+  (
+   assertEqual(event1.getCat(), "IT");
+   assertEqual(event2.getCat(), "IT")
+  );
+  
+(*@
+\label{testGetStartDate:135}
+@*)
+ private testGetStartDate : () ==> ()
+  testGetStartDate() == 
+  (
+   assertEqual(event1.getStartDate(), date1);
+   assertEqual(event2.getStartDate(), date3)
+  );
+  
+(*@
+\label{testGetEndDate:142}
+@*)
+ private testGetEndDate : () ==> ()
+  testGetEndDate() == 
+  (
+   assertEqual(event1.getEndDate(), date2);
+   assertEqual(event2.getEndDate(), date4)
+  );
+   
+ -- TEST SETS --
+(*@
+\label{testSetName:150}
+@*)
+ private testSetName: () ==> ()
+  testSetName() ==
+  (
+   event1.setName("Test Event name");
+   event2.setName("Test2 Event name")
+  );
+  
+(*@
+\label{testSetCountry:157}
+@*)
+ private testSetCountry: () ==> ()
+  testSetCountry() ==
+  (
+   event1.setCountry("france");
+   event2.setCountry("eua")
+  );
+  
+(*@
+\label{testSetCity:164}
+@*)
+ private testSetCity: () ==> ()
+  testSetCity() ==
+  (
+   event1.setCity("paris");
+   event2.setCity("lisbon")
+  );
+ 
+(*@
+\label{testSetCategory:171}
+@*)
+ private testSetCategory: () ==> ()
+  testSetCategory() ==
+  (
+   event1.setCategory("transport");
+   event2.setCategory("media")
+  );
+  
+(*@
+\label{testSetStartDate:178}
+@*)
+ private testSetStartDate: () ==> ()
+  testSetStartDate() ==
+  (
+   event1.setStartDate(date3);
+   event2.setStartDate(date1)
+  );
+  
+(*@
+\label{testSetEndDate:185}
+@*)
+ private testSetEndDate: () ==> ()
+  testSetEndDate() ==
+  (
+   event1.setEndDate(date4);
+   event2.setEndDate(date2)
+  );
+  
+(*@
+\label{main:192}
+@*)
+ public static main: () ==> ()
+  main() ==
+  (
+   dcl teste : EventTest := new EventTest();
+   teste.testGetName();
+   teste.testGetCountry();
+   teste.testGetCity();
+   teste.testGetCategory();
+   teste.testGetStartDate();
+   teste.testGetEndDate();
+   teste.testGetStartDate();
+   
+   teste.testSetName();
+   teste.testSetCountry();
+   teste.testSetCity();
+   teste.testSetCategory();
+   teste.testSetStartDate();
+   teste.testSetEndDate();
+   teste.testSetStartDate()
+  );
+end EventTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Event:15]{Event} & 15&100.0\% & 32 \\
+\hline
+\hyperref[getCat:40]{getCat} & 40&100.0\% & 6 \\
+\hline
+\hyperref[getCity:36]{getCity} & 36&100.0\% & 4 \\
+\hline
+\hyperref[getCountry:32]{getCountry} & 32&100.0\% & 2 \\
+\hline
+\hyperref[getEndDate:48]{getEndDate} & 48&100.0\% & 2 \\
+\hline
+\hyperref[getName:28]{getName} & 28&100.0\% & 10 \\
+\hline
+\hyperref[getStartDate:44]{getStartDate} & 44&100.0\% & 4 \\
+\hline
+\hyperref[main:192]{main} & 192&100.0\% & 1 \\
+\hline
+\hyperref[setCategory:64]{setCategory} & 64&100.0\% & 2 \\
+\hline
+\hyperref[setCity:60]{setCity} & 60&100.0\% & 2 \\
+\hline
+\hyperref[setCountry:56]{setCountry} & 56&100.0\% & 2 \\
+\hline
+\hyperref[setEndDate:72]{setEndDate} & 72&100.0\% & 2 \\
+\hline
+\hyperref[setName:52]{setName} & 52&100.0\% & 2 \\
+\hline
+\hyperref[setStartDate:68]{setStartDate} & 68&100.0\% & 4 \\
+\hline
+\hyperref[testGetCategory:128]{testGetCategory} & 128&100.0\% & 1 \\
+\hline
+\hyperref[testGetCity:121]{testGetCity} & 121&100.0\% & 1 \\
+\hline
+\hyperref[testGetCountry:114]{testGetCountry} & 114&100.0\% & 3 \\
+\hline
+\hyperref[testGetEndDate:142]{testGetEndDate} & 142&100.0\% & 1 \\
+\hline
+\hyperref[testGetName:107]{testGetName} & 107&100.0\% & 1 \\
+\hline
+\hyperref[testGetStartDate:135]{testGetStartDate} & 135&100.0\% & 2 \\
+\hline
+\hyperref[testSetCategory:171]{testSetCategory} & 171&100.0\% & 1 \\
+\hline
+\hyperref[testSetCity:164]{testSetCity} & 164&100.0\% & 1 \\
+\hline
+\hyperref[testSetCountry:157]{testSetCountry} & 157&100.0\% & 1 \\
+\hline
+\hyperref[testSetEndDate:185]{testSetEndDate} & 185&100.0\% & 1 \\
+\hline
+\hyperref[testSetName:150]{testSetName} & 150&100.0\% & 1 \\
+\hline
+\hyperref[testSetStartDate:178]{testSetStartDate} & 178&100.0\% & 2 \\
+\hline
+\hline
+Event.vdmpp & & 100.0\% & 91 \\
+\hline
+\end{longtable}
+

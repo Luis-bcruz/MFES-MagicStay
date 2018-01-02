@@ -1,0 +1,574 @@
+\begin{vdmpp}[breaklines=true]
+class MagicStay
+types
+ public string = Utilities`string;
+
+instance variables
+ private users : set of User := {};
+ private properties : set of Property := {};
+ private events : set of Event := {};
+
+operations
+ -- Contructor
+(*@
+\label{MagicStay:12}
+@*)
+ public MagicStay : () ==> MagicStay
+  MagicStay() == return self
+  post users = {} and properties = {} and events = {};
+ 
+ --Register a User
+(*@
+\label{registerUser:17}
+@*)
+ public registerUser : User ==> ()
+  registerUser(user) == users := users union {user}
+  pre user not in set users
+  post users = users~ union {user};
+  
+ --Remove a User
+(*@
+\label{removeUser:23}
+@*)
+ public removeUser : User ==> ()
+  removeUser(user) == users := users \ {user}
+  pre user in set users
+  post users = users~ \ {user};
+  
+ --get all the users registered in MagicStay
+(*@
+\label{getUsers:29}
+@*)
+ public getUsers :() ==> set of User  
+  getUsers() == (return users);
+  
+ --Add a Property
+(*@
+\label{addProperty:33}
+@*)
+ public addProperty : Property ==> ()
+  addProperty(property) == properties := properties union {property}
+  pre property not in set properties
+  post properties = properties~ union {property};
+  
+ --remove a Property
+(*@
+\label{removeProperty:39}
+@*)
+ public removeProperty : Property ==> ()
+  removeProperty(property) == properties := properties \ {property}
+  pre property in set properties
+  post properties = properties~ \ {property};
+  
+ --get all the properties available in MagicStay
+(*@
+\label{getProperties:45}
+@*)
+ public getProperties :() ==> set of Property  
+  getProperties() == (return properties);
+
+ --Add an Event
+(*@
+\label{addEvent:49}
+@*)
+ public addEvent : Event ==> ()
+  addEvent(event) == events := events union {event}
+  pre event not in set events
+  post events = events~ union {event};
+
+ --remove a Event
+(*@
+\label{removeEvent:55}
+@*)
+ public removeEvent : Event ==> ()
+  removeEvent(event) == events := events \ {event}
+  pre event in set events
+  post events = events~ \ {event};
+  
+ --get all the events available in MagicStay
+(*@
+\label{getEvents:61}
+@*)
+ public getEvents :() ==> set of Event  
+  getEvents() == (return events);
+ 
+   
+ --Search properties by city
+(*@
+\label{searchPropertyByCity:66}
+@*)
+ public searchPropertyByCity : string ==> set of Property
+  searchPropertyByCity(c) ==
+  (
+   dcl res: set of Property := {};
+    for all p in set properties do 
+     if (p.getCity() = c)
+      then (res := {p} union res);
+   return res
+  )
+  pre c <> "";
+  
+ --Search for properties by event
+(*@
+\label{searchPropertyByEvent:78}
+@*)
+ public searchPropertyByEvent : string ==> set of Property
+  searchPropertyByEvent(n) ==
+  (
+   dcl res: set of Property := {};
+    for all e in set events do
+     if(e.getName() = n)
+      then(
+         dcl ct: string := e.getCity();
+          for all p in set properties do
+           if(p.getCity() = ct)
+            then (res := {p} union res)
+        );
+   return res
+  )
+  pre n <> "";
+  
+ --search events by category
+(*@
+\label{seachEventByCat:95}
+@*)
+ public seachEventByCat : string ==> set of Event
+  seachEventByCat(c) == 
+  (
+   dcl res: set of Event := {};
+    for all e in set events do
+     if(e.getCat() = c)
+      then (res := {e} union res);
+   return res
+  )
+  pre c <> "";
+  
+ --get the best property from a certain city
+(*@
+\label{getBestProperty:107}
+@*)
+ public getBestProperty : string ==> Property
+  getBestProperty(c) ==
+  (
+   dcl best : [Property] := nil;
+   for all p in set properties do
+    if (best = nil or p.getNumStars() > best.getNumStars() and p.getCity() = c) then
+     best := p;
+   return best
+  )
+  pre card properties > 0
+  post RESULT in set properties;
+ 
+end MagicStay
+
+class MagicStayTest is subclass of MyTestCase
+
+instance variables
+
+ m : MagicStay := new MagicStay();
+ user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+ user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+ user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+ user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+ 
+ date1 : Date := new Date(2017,2,2);
+ date2 : Date := new Date(2017,2,3);
+ date3 : Date := new Date(2017,3,22);
+ date4 : Date := new Date(2017,3,24);
+ date5 : Date := new Date(2017,12,30);
+ 
+ event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+ event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+ event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+ event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+ 
+ prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+ prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+ prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+ prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+ prop4 : Property := new Property("cambridge",<Apartment>,3,730,5,user4,event3);
+
+operations
+
+(*@
+\label{testRegisterUser:150}
+@*)
+ private testRegisterUser: () ==> ()
+  testRegisterUser() ==
+  (
+   dcl u : set of User := {};
+   u := u union {user1};
+   u := u union {user2};
+   u := u union {user3};
+   u := u union {user4};
+   
+   m.registerUser(user1);
+   m.registerUser(user2);
+   m.registerUser(user3);
+   m.registerUser(user4);
+   
+   assertEqual(m.getUsers(),u);
+   
+   m.removeUser(user1);
+   m.removeUser(user2);
+   m.removeUser(user3);
+   m.removeUser(user4)
+  
+  );
+ 
+(*@
+\label{testRemoveUser:173}
+@*)
+ private testRemoveUser : () ==> ()
+  testRemoveUser() ==
+  (   
+   dcl ur : set of User := {user3,user4};
+   m.registerUser(user1);
+   m.registerUser(user2);
+   m.registerUser(user3);
+   m.registerUser(user4);
+   
+   m.removeUser(user1);
+   m.removeUser(user2);
+   
+   
+   assertEqual(m.getUsers(),ur);
+   
+   m.removeUser(user3);
+   m.removeUser(user4);
+  );
+ 
+(*@
+\label{testGetUsers:192}
+@*)
+ private testGetUsers : () ==> ()
+  testGetUsers() == 
+  (
+   dcl u : set of User := {user1,user2,user3,user4};
+     m.registerUser(user1);
+   m.registerUser(user2);
+   m.registerUser(user3);
+   m.registerUser(user4);
+     
+     assertEqual(m.getUsers(), u)
+  );
+ 
+(*@
+\label{testAddProperty:204}
+@*)
+ private testAddProperty : () ==> ()
+  testAddProperty() ==
+  (
+   dcl p : set of Property := {prop1,prop2,prop3,prop4,prop5};
+   
+   m.addProperty(prop1);
+   m.addProperty(prop2);
+   m.addProperty(prop3);
+   m.addProperty(prop4);
+   m.addProperty(prop5);
+   
+   assertEqual(m.getProperties(),p)
+   
+  
+  );
+ 
+(*@
+\label{testRemoveProperty:220}
+@*)
+ private testRemoveProperty : () ==> ()
+  testRemoveProperty() ==
+  (
+   dcl p : set of Property := {};
+   p := p union {prop5};
+   
+   m.removeProperty(prop1);
+   m.removeProperty(prop2);
+   m.removeProperty(prop3);
+   m.removeProperty(prop4);
+   
+   assertEqual(m.getProperties(),p);
+   
+   m.addProperty(prop1);
+   m.addProperty(prop2);
+   m.addProperty(prop3);
+   m.addProperty(prop4)
+  );
+ 
+ 
+(*@
+\label{testGetProperties:240}
+@*)
+ private testGetProperties : () ==> ()
+  testGetProperties() == 
+  (
+   dcl p : set of Property := {};
+     p := p union {prop1};
+     p := p union {prop2};
+     p := p union {prop3};
+     p := p union {prop4};
+     p := p union {prop5};
+       
+     assertEqual(m.getProperties(), p)
+  );
+ 
+(*@
+\label{testAddEvent:253}
+@*)
+ private testAddEvent : () ==> ()
+  testAddEvent() ==
+  (
+   dcl e : set of Event := {};
+   e := e union {event1};
+   e := e union {event2};
+   e := e union {event3};
+   e := e union {event4};
+   
+   m.addEvent(event1);
+   m.addEvent(event2);
+   m.addEvent(event3);
+   m.addEvent(event4);
+
+   assertEqual(m.getEvents(),e)
+  );
+ 
+  
+(*@
+\label{testRemoveEvent:271}
+@*)
+ private testRemoveEvent : () ==> ()
+  testRemoveEvent() ==
+  (
+   dcl e : set of Event := {};
+   e := e union {event2};
+   e := e union {event3};
+
+   
+   m.removeEvent(event1);
+   m.removeEvent(event4);
+   
+   assertEqual(m.getEvents(),e);
+   
+   
+  );
+ 
+(*@
+\label{testGetEvents:287}
+@*)
+ private testGetEvents : () ==> ()
+  testGetEvents() == 
+  (
+   dcl e : set of Event := {};
+     e := e union {event2};
+     e := e union {event3};
+     
+     assertEqual(m.getEvents(), e);
+     
+     m.addEvent(event1);
+   m.addEvent(event4)
+  );
+ 
+(*@
+\label{testSeachPropertyByCity:300}
+@*)
+ private testSeachPropertyByCity: () ==> ()
+  testSeachPropertyByCity() ==
+  (
+   assertEqual(m.searchPropertyByCity("porto"),{prop1,prop2});
+   assertEqual(m.searchPropertyByCity("rome"),{prop3,prop5});
+   assertEqual(m.searchPropertyByCity("cambridge"),{prop4})
+  );
+  
+(*@
+\label{testSeachPropertyByEvent:308}
+@*)
+ private testSeachPropertyByEvent: () ==> ()
+  testSeachPropertyByEvent() ==
+  (
+   assertEqual(m.searchPropertyByEvent("IT and security"),{prop3,prop5});
+   assertEqual(m.searchPropertyByEvent("Talk a Bit"),{prop1,prop2})
+  );
+  
+(*@
+\label{testSeachEventByCat:315}
+@*)
+ private testSeachEventByCat: () ==> ()
+  testSeachEventByCat() ==
+  (
+   dcl e : set of Event := {};
+   e := e union {event1};
+   e := e union {event2};
+   e := e union {event3};
+   e := e union {event4};
+   
+   assertEqual(m.seachEventByCat("IT"),e)
+  );
+  
+(*@
+\label{testBestProperty:327}
+@*)
+ private testBestProperty : () ==> ()
+  testBestProperty() ==
+  (
+   assertEqual(m.getBestProperty("porto"),prop2);
+   assertEqual(m.getBestProperty("cambridge"),prop4)
+  );
+ 
+(*@
+\label{testRegisterPreCondition:334}
+@*)
+(*@
+\label{main:334}
+@*)
+ private testRegisterPreCondition : () ==> ()
+  testRegisterPreCondition() ==
+  (  
+   m.registerUser(user1);
+   m.registerUser(user1)
+  );
+  
+(*@
+\label{testRemoveUserPreCondition:341}
+@*)
+ private testRemoveUserPreCondition : () ==> ()
+  testRemoveUserPreCondition() ==
+  (   
+   m.removeUser(user1);
+   m.removeUser(user1);
+  );
+  
+(*@
+\label{testSeachPropByCityPreCondition:348}
+@*)
+ private testSeachPropByCityPreCondition : () ==> ()
+  testSeachPropByCityPreCondition() ==
+  (
+   assertEqual(m.searchPropertyByCity(""),{});
+  );
+  
+ private testBestPropPreCondition : () ==> ()
+  testBestPropPreCondition() ==
+(*@
+\label{testBestPropPreCondition:356}
+@*)
+  (
+  
+   m.addProperty(prop1);
+   m.addProperty(prop2);
+   m.addProperty(prop3);
+   m.addProperty(prop4);
+   m.addProperty(prop5);
+   
+   m.removeProperty(prop1);
+   m.removeProperty(prop2);
+   m.removeProperty(prop3);
+   m.removeProperty(prop4);
+   m.removeProperty(prop5);
+   
+   assertEqual(m.getBestProperty("porto"),prop2);
+   assertEqual(m.getBestProperty("cambridge"),prop4)
+  );
+  
+ public static main: () ==> ()
+  main() ==
+  (
+   dcl teste : MagicStayTest := new MagicStayTest();
+   teste.testRegisterUser();
+   teste.testRemoveUser();
+   teste.testGetUsers();
+   
+   teste.testAddProperty();
+   teste.testRemoveProperty();
+   teste.testGetProperties();
+   
+   teste.testAddEvent();
+   teste.testRemoveEvent();
+   teste.testGetEvents();
+   
+   teste.testSeachPropertyByCity();
+   teste.testSeachPropertyByEvent();
+   teste.testSeachEventByCat();
+   
+   teste.testBestProperty();
+   --teste.testRegisterPreCondition();
+   --teste.testRemoveUserPreCondition();
+   --teste.testSeachPropByCityPreCondition();
+   --teste.testBestPropPreCondition();
+   );
+  
+end MagicStayTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[MagicStay:12]{MagicStay} & 12&100.0\% & 2 \\
+\hline
+\hyperref[addEvent:49]{addEvent} & 49&100.0\% & 12 \\
+\hline
+\hyperref[addProperty:33]{addProperty} & 33&100.0\% & 9 \\
+\hline
+\hyperref[getBestProperty:107]{getBestProperty} & 107&100.0\% & 2 \\
+\hline
+\hyperref[getEvents:61]{getEvents} & 61&100.0\% & 3 \\
+\hline
+\hyperref[getProperties:45]{getProperties} & 45&100.0\% & 3 \\
+\hline
+\hyperref[getUsers:29]{getUsers} & 29&100.0\% & 3 \\
+\hline
+\hyperref[main:334]{main} & 334&100.0\% & 1 \\
+\hline
+\hyperref[registerUser:17]{registerUser} & 17&100.0\% & 12 \\
+\hline
+\hyperref[removeEvent:55]{removeEvent} & 55&100.0\% & 2 \\
+\hline
+\hyperref[removeProperty:39]{removeProperty} & 39&100.0\% & 4 \\
+\hline
+\hyperref[removeUser:23]{removeUser} & 23&100.0\% & 8 \\
+\hline
+\hyperref[seachEventByCat:95]{seachEventByCat} & 95&100.0\% & 1 \\
+\hline
+\hyperref[searchPropertyByCity:66]{searchPropertyByCity} & 66&100.0\% & 3 \\
+\hline
+\hyperref[searchPropertyByEvent:78]{searchPropertyByEvent} & 78&100.0\% & 2 \\
+\hline
+\hyperref[testAddEvent:253]{testAddEvent} & 253&100.0\% & 1 \\
+\hline
+\hyperref[testAddProperty:204]{testAddProperty} & 204&100.0\% & 1 \\
+\hline
+\hyperref[testBestPropPreCondition:356]{testBestPropPreCondition} & 356&0.0\% & 0 \\
+\hline
+\hyperref[testBestProperty:327]{testBestProperty} & 327&100.0\% & 1 \\
+\hline
+\hyperref[testGetEvents:287]{testGetEvents} & 287&100.0\% & 1 \\
+\hline
+\hyperref[testGetProperties:240]{testGetProperties} & 240&100.0\% & 1 \\
+\hline
+\hyperref[testGetUsers:192]{testGetUsers} & 192&100.0\% & 1 \\
+\hline
+\hyperref[testRegisterPreCondition:334]{testRegisterPreCondition} & 334&0.0\% & 0 \\
+\hline
+\hyperref[testRegisterUser:150]{testRegisterUser} & 150&100.0\% & 1 \\
+\hline
+\hyperref[testRemoveEvent:271]{testRemoveEvent} & 271&100.0\% & 1 \\
+\hline
+\hyperref[testRemoveProperty:220]{testRemoveProperty} & 220&100.0\% & 1 \\
+\hline
+\hyperref[testRemoveUser:173]{testRemoveUser} & 173&100.0\% & 1 \\
+\hline
+\hyperref[testRemoveUserPreCondition:341]{testRemoveUserPreCondition} & 341&0.0\% & 0 \\
+\hline
+\hyperref[testSeachEventByCat:315]{testSeachEventByCat} & 315&100.0\% & 1 \\
+\hline
+\hyperref[testSeachPropByCityPreCondition:348]{testSeachPropByCityPreCondition} & 348&0.0\% & 0 \\
+\hline
+\hyperref[testSeachPropertyByCity:300]{testSeachPropertyByCity} & 300&100.0\% & 1 \\
+\hline
+\hyperref[testSeachPropertyByEvent:308]{testSeachPropertyByEvent} & 308&100.0\% & 3 \\
+\hline
+\hline
+MagicStay.vdmpp & & 93.5\% & 82 \\
+\hline
+\end{longtable}
+

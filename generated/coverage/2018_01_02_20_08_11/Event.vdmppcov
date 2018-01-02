@@ -1,0 +1,212 @@
+class Event
+types
+	public string = Utilities`string;
+
+instance variables
+	private name : string;
+	private country : string;
+	private city : string;
+	private category : string;
+	private startDate : Date;
+	private endDate : Date;
+	
+operations
+	--Constructor
+	public Event : string*string*string*string*Date*Date ==> Event
+		Event(n,c,ct,cat,sd,ed) ==
+		(
+			name := n;
+			country := c;
+			city := ct;
+			category := cat;
+			startDate := sd;
+			endDate := ed;
+			return self
+		);
+		
+	--get event's name
+	public getName : () ==> string
+		getName() == return name;
+		
+	--get event's country where is going to happen
+	public getCountry : () ==> string
+		getCountry() == return country;
+		
+	--get event's country where is going to happen
+	public getCity : () ==> string
+		getCity() == return city;
+		
+	--get event's Category
+	public getCat : () ==> string
+		getCat() == return category;
+		
+	--get event's starting date
+	public getStartDate : () ==> Date
+		getStartDate() == return startDate;
+		
+	--get event's ending date
+	public getEndDate : () ==> Date
+		getEndDate() == return endDate;
+	
+	--set event's name
+	public setName : string ==> ()
+		setName(n) == (name := n;return);
+		
+	--set event's country
+	public setCountry : string ==> ()
+		setCountry(c) == (country := c;return);
+	
+	--set event's country
+	public setCity : string ==> ()
+		setCity(c) == (city := c;return);
+	
+	--set event's category
+	public setCategory : string ==> ()
+		setCategory(c) == (category := c;return);
+		
+	--set event's starting date
+	public setStartDate : Date ==> ()
+		setStartDate(d) == (startDate := d;return);
+		
+	--set event's starting date
+	public setEndDate : Date ==> ()
+		setEndDate(d) == (endDate := d;return);
+		
+	
+
+end Event
+
+class EventTest is subclass of MyTestCase
+
+instance variables
+	user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+	user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+	user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+	user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+	
+	date1 : Date := new Date(2017,2,2);
+	date2 : Date := new Date(2017,2,3);
+	date3 : Date := new Date(2017,3,22);
+	date4 : Date := new Date(2017,3,24);
+	date5 : Date := new Date(2017,12,30);
+	
+	event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+	event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+	event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+	event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+	
+	prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+	prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+	prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+	prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+	prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+	
+
+operations
+-- TEST GETS --
+	private testGetName: () ==> ()
+		testGetName() == 
+		(
+			assertEqual(event1.getName(), "AI in 2020");
+			assertEqual(event2.getName(), "IT and security")
+		);
+		
+	private testGetCountry : () ==> ()
+		testGetCountry() == 
+		(
+			assertEqual(event1.getCountry(), "portugal");
+			assertEqual(event2.getCountry(), "italy")
+		);
+	
+	private testGetCity : () ==> ()
+		testGetCity() == 
+		(
+			assertEqual(event1.getCity(), "porto");
+			assertEqual(event2.getCity(), "rome")
+		);
+	
+	private testGetCategory : () ==> ()
+		testGetCategory() == 
+		(
+			assertEqual(event1.getCat(), "IT");
+			assertEqual(event2.getCat(), "IT")
+		);
+		
+	private testGetStartDate : () ==> ()
+		testGetStartDate() == 
+		(
+			assertEqual(event1.getStartDate(), date1);
+			assertEqual(event2.getStartDate(), date3)
+		);
+		
+	private testGetEndDate : () ==> ()
+		testGetEndDate() == 
+		(
+			assertEqual(event1.getEndDate(), date2);
+			assertEqual(event2.getEndDate(), date4)
+		);
+			
+	-- TEST SETS --
+	private testSetName: () ==> ()
+		testSetName() ==
+		(
+			event1.setName("Test Event name");
+			event2.setName("Test2 Event name")
+		);
+		
+	private testSetCountry: () ==> ()
+		testSetCountry() ==
+		(
+			event1.setCountry("france");
+			event2.setCountry("eua")
+		);
+		
+	private testSetCity: () ==> ()
+		testSetCity() ==
+		(
+			event1.setCity("paris");
+			event2.setCity("lisbon")
+		);
+	
+	private testSetCategory: () ==> ()
+		testSetCategory() ==
+		(
+			event1.setCategory("transport");
+			event2.setCategory("media")
+		);
+		
+	private testSetStartDate: () ==> ()
+		testSetStartDate() ==
+		(
+			event1.setStartDate(date3);
+			event2.setStartDate(date1)
+		);
+		
+	private testSetEndDate: () ==> ()
+		testSetEndDate() ==
+		(
+			event1.setEndDate(date4);
+			event2.setEndDate(date2)
+		);
+		
+	public static main: () ==> ()
+		main() ==
+		(
+			dcl teste : EventTest := new EventTest();
+			teste.testGetName();
+			teste.testGetCountry();
+			teste.testGetCity();
+			teste.testGetCategory();
+			teste.testGetStartDate();
+			teste.testGetEndDate();
+			teste.testGetStartDate();
+			
+			teste.testSetName();
+			teste.testSetCountry();
+			teste.testSetCity();
+			teste.testSetCategory();
+			teste.testSetStartDate();
+			teste.testSetEndDate();
+			teste.testSetStartDate()
+		);
+end EventTest

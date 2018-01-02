@@ -1,0 +1,268 @@
+class User
+types
+	public string = Utilities`string;
+	public title = <Mr> | <Miss>;
+instance variables
+	private userTitle: title;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private country: string;
+  private city: string;
+  private phoneNumber : nat;
+  private password: string;
+        
+  inv firstName <> "";
+  inv lastName <> "";
+  inv email <> "";
+  inv country <> "";
+  inv city <> "";
+  inv phoneNumber <> 0;
+  inv password <> "";
+        
+operations
+
+	-- User Constructor
+	public User: title*string*string*string*string*string*nat*string ==> User
+ 	 User(t,fn,ln,e,ct,c,ph,pass) == 
+ 	 (
+  	userTitle := t;
+    firstName := fn;
+   	lastName := ln;
+   	email := e;
+   	country := ct;
+   	city := c;
+   	phoneNumber := ph;
+		password := pass;
+		return self;
+	 );
+	 
+	-- get user title
+	public getTitle : () ==> title
+		getTitle() == return userTitle;
+		
+	-- get user first Name
+	public getFirstName : () ==> string
+		getFirstName() == return firstName;
+		
+	-- get user last Name
+	public getLastName : () ==> string
+		getLastName() == return lastName;
+		
+	-- get user email
+	public getEmail : () ==> string
+		getEmail() == return  email;
+		
+	-- get user's country
+	public getCountry : () ==> string
+		getCountry() == return country;
+		
+	-- get user's city
+	public getCity : () ==> string
+		getCity() == return city;
+		
+	-- get user's phone number
+	public getPhoneNumber : () ==> nat
+		getPhoneNumber() == return phoneNumber;
+		
+	-- get user password
+	public getPassword : () ==> string
+		getPassword() == return password;
+	
+	-- set user title Mr or Miss
+	public setTitle : title ==> ()
+		setTitle(t) == (userTitle := t; return);
+		
+	-- set user first name
+	public setFirstName : string ==> ()
+		setFirstName(fn) == (firstName := fn; return);
+	
+	-- set user last name
+	public setLastName : string ==> ()
+		setLastName(ln) == (lastName := ln; return);
+		
+	-- set user email address
+	public setEmail : string ==> ()
+		setEmail(e) == (email := e; return);
+		
+	-- set user country of origin
+	public setCountry : string ==> ()
+		setCountry(c) == (country := c; return);
+		
+	-- set user city of origin
+	public setCity : string ==> ()
+		setCity(c) == (city := c; return);
+		
+	-- set user phone number
+	public setPhoneNumber : nat ==> ()
+		setPhoneNumber(n) == (phoneNumber := n; return);
+	
+	-- set user password
+	public setPassword : string ==> ()
+		setPassword(p) == (password := p; return);
+
+end User
+
+class UserTest is subclass of MyTestCase
+
+instance variables
+	user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+	user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+	user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+	user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+	
+	date1 : Date := new Date(2017,2,2);
+	date2 : Date := new Date(2017,2,3);
+	date3 : Date := new Date(2017,3,22);
+	date4 : Date := new Date(2017,3,24);
+	date5 : Date := new Date(2017,12,30);
+	
+	event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+	event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+	event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+	event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+	
+	prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+	prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+	prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+	prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+	prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+
+operations
+
+	private testGetTitle : () ==> ()
+		testGetTitle() == 
+		(
+			assertEqual(user1.getTitle(), <Mr>);
+			assertEqual(user2.getTitle(), <Miss>)
+		);
+		
+	private testGetFirstName : () ==> ()
+		testGetFirstName() == 
+		(
+			assertEqual(user1.getFirstName(), "luis");
+			assertEqual(user2.getFirstName(), "maria")
+		);
+		
+	private testGetLastName : () ==> ()
+		testGetLastName() == 
+		(
+			assertEqual(user1.getLastName(), "cruz");
+			assertEqual(user2.getLastName(), "alegre")
+		);
+		
+	private testGetEmail : () ==> ()
+		testGetEmail() == 
+		(
+			assertEqual(user1.getEmail(), "luis.aa@gmail.com");
+			assertEqual(user2.getEmail(), "m.a@hormail.com")
+		);
+		
+	private testGetCountry : () ==> ()
+		testGetCountry() == 
+		(
+			assertEqual(user1.getCountry(), "portugal");
+			assertEqual(user2.getCountry(), "portugal")
+		);
+		
+	private testGetCity : () ==> ()
+		testGetCity() == 
+		(
+			assertEqual(user1.getCity(), "porto");
+			assertEqual(user3.getCity(), "rome")
+		);
+		
+	private testGetPhoneNum : () ==> ()
+		testGetPhoneNum() == 
+		(
+			assertEqual(user1.getPhoneNumber(), 912829288);
+			assertEqual(user2.getPhoneNumber(), 922832238)
+		);
+	
+	private testGetPassword : () ==> ()
+		testGetPassword() == 
+		(
+			assertEqual(user1.getPassword(), "feup");
+			assertEqual(user2.getPassword(), "alegre")
+		);
+		
+	-- TEST SETS --
+	
+	private testSetTitle: () ==> ()
+		testSetTitle() ==
+		(
+			user1.setTitle(<Mr>);
+			user2.setTitle(<Miss>)
+		);
+		
+	private testSetFirstName: () ==> ()
+		testSetFirstName() ==
+		(
+			user1.setFirstName("joao");
+			user2.setFirstName("joana")
+		);
+		
+	private testSetLastName: () ==> ()
+		testSetLastName() ==
+		(
+			user1.setLastName("batista");
+			user2.setLastName("correia")
+		);
+		
+	private testSetEmail: () ==> ()
+		testSetEmail() ==
+		(
+			user1.setEmail("teste123@gmail.com");
+			user2.setEmail("teste@gmail.com")
+		);
+		
+	private testSetCountry: () ==> ()
+		testSetCountry() ==
+		(
+			user1.setCountry("france");
+			user2.setCountry("france")
+		);
+		
+	private testSetCity: () ==> ()
+		testSetCity() ==
+		(
+			user1.setCity("paris");
+			user2.setCity("cannes")
+		);
+		
+	private testSetPhoneNum: () ==> ()
+		testSetPhoneNum() ==
+		(
+			user1.setPhoneNumber(912321456);
+			user2.setPhoneNumber(933890765)
+		);
+		
+	private testSetPassword: () ==> ()
+		testSetPassword() ==
+		(
+			user1.setPassword("testPass");
+			user2.setPassword("testPass")
+		);
+		
+	public static main: () ==> ()
+		main() ==
+		(
+			dcl teste : UserTest := new UserTest();
+			teste.testGetTitle();
+			teste.testGetFirstName();
+			teste.testGetLastName();
+			teste.testGetEmail();
+			teste.testGetCountry();
+			teste.testGetCity();
+			teste.testGetPhoneNum();
+			teste.testGetPassword();
+			teste.testSetTitle();
+			teste.testSetFirstName();
+			teste.testSetLastName();
+			teste.testSetEmail();
+			teste.testSetCountry();
+			teste.testSetCity();
+			teste.testSetPhoneNum();
+			teste.testSetPassword()
+		);
+end UserTest

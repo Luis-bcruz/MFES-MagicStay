@@ -1,0 +1,482 @@
+\begin{vdmpp}[breaklines=true]
+class Property
+types
+ public string = Utilities`string;
+ public apartType = <Studio> | <Apartment> | <privateRoom>;
+
+instance variables
+ private city : string;
+ private type : apartType;
+ private numRooms : nat1;
+ private deposit : nat1;
+ private numStars : nat;
+ private host: User;
+ private event: Event;
+ private availability : set of Date := {};
+ 
+ inv city <> "";
+ 
+operations
+ --Constructor
+(*@
+\label{Property:20}
+@*)
+ public Property : string*apartType*nat1*nat1*nat*User*Event==> Property
+  Property(c,t,nr,d,ns,h,e) ==
+  (
+   city := c;
+   type := t;
+   numRooms := nr;
+   deposit := d;
+   numStars := ns;
+   host := h;
+   event := e;
+   availability := {};
+   return self
+  );
+  
+ -- get property's city
+(*@
+\label{getCity:35}
+@*)
+ public getCity : () ==> string
+  getCity() == return city;
+  
+ -- get property's type
+(*@
+\label{getType:39}
+@*)
+ public getType : () ==> apartType
+  getType() == return type;
+  
+ -- get property's number of rooms
+(*@
+\label{getNumRooms:43}
+@*)
+ public getNumRooms : () ==> nat1
+  getNumRooms() == return numRooms;
+  
+ -- get property's rent value
+(*@
+\label{getDeposit:47}
+@*)
+ public getDeposit : () ==> nat1
+  getDeposit() == return deposit;
+  
+ -- get property's number of stars
+(*@
+\label{getNumStars:51}
+@*)
+ public getNumStars : () ==> nat
+  getNumStars() == return numStars;
+  
+ -- get property's owner
+(*@
+\label{getHost:55}
+@*)
+ public getHost : () ==> User
+  getHost() == return host;
+  
+ -- get property's nearby events
+(*@
+\label{getEvent:59}
+@*)
+ public getEvent : () ==> Event
+  getEvent() == return event;
+
+ -- get property's booking dates
+(*@
+\label{getAvailabilities:63}
+@*)
+ public getAvailabilities : () ==> set of Date
+  getAvailabilities() == return availability;
+ 
+ -- set property's city
+(*@
+\label{setCity:67}
+@*)
+ public setCity : string ==> ()
+  setCity(c) == (city :=c; return);
+  
+ -- set property's type
+(*@
+\label{setType:71}
+@*)
+ public setType : apartType ==> ()
+  setType(t) == (type :=t; return);
+ 
+ -- set property's number of rooms
+(*@
+\label{setNumRooms:75}
+@*)
+ public setNumRooms : nat1 ==> ()
+  setNumRooms(n) == (numRooms := n; return);
+  
+ -- set property's rent value
+(*@
+\label{setDeposit:79}
+@*)
+ public setDeposit : nat1 ==> ()
+  setDeposit(n) == (deposit := n; return);
+ 
+ -- set property's number of stars
+(*@
+\label{setNumStars:83}
+@*)
+ public setNumStars : nat ==> ()
+  setNumStars(n) == (numStars := n; return);
+  
+ -- set property's owner
+(*@
+\label{setHost:87}
+@*)
+ public setHost : User ==> ()
+  setHost(u) == (host := u; return);
+  
+ -- set property's event
+(*@
+\label{setEvent:91}
+@*)
+ public setEvent : Event ==> ()
+  setEvent(e) == (event := e; return);
+
+ -- add a period in which property is booked
+(*@
+\label{addAvalabilty:95}
+@*)
+ public addAvalabilty : Date*Date ==> ()
+  addAvalabilty(sd,ed) == 
+  (
+   availability := availability union {sd,ed}
+  );
+  
+ -- remove a period in which property is booked
+(*@
+\label{removeAvalabilty:102}
+@*)
+ public removeAvalabilty : Date*Date ==> ()
+  removeAvalabilty(sd,ed) == 
+  (
+   availability := availability \ {sd,ed}
+  );
+
+end Property
+
+class PropertyTest is subclass of MyTestCase
+
+instance variables
+ user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+ user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+ user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+ user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+ 
+ date1 : Date := new Date(2017,2,2);
+ date2 : Date := new Date(2017,2,3);
+ date3 : Date := new Date(2017,3,22);
+ date4 : Date := new Date(2017,3,24);
+ date5 : Date := new Date(2017,12,30);
+ 
+ event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+ event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+ event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+ event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+ 
+ prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+ prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+ prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+ prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+ prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+ 
+ --propTestInv : Property := new Property("",<Studio>,1,150,3,user1,event1);
+ 
+ 
+ 
+(*@
+\label{testGetCity:139}
+@*)
+operations
+ -- TEST GETS --
+ private testGetCity : () ==> ()
+  testGetCity() == 
+  (
+   assertEqual(prop1.getCity(), "porto");
+   assertEqual(prop3.getCity(), "rome")
+(*@
+\label{testGetType:146}
+@*)
+  );
+  
+ private testGetType : () ==> ()
+  testGetType() == 
+  (
+   assertEqual(prop1.getType(), <Studio>);
+   assertEqual(prop2.getType(), <Apartment>)
+(*@
+\label{testGetNumRooms:153}
+@*)
+  );
+ 
+ private testGetNumRooms : () ==> ()
+  testGetNumRooms() == 
+  (
+   assertEqual(prop1.getNumRooms(), 1);
+   assertEqual(prop2.getNumRooms(), 2)
+(*@
+\label{testGetDeposit:160}
+@*)
+  );
+ 
+ private testGetDeposit : () ==> ()
+  testGetDeposit() == 
+  (
+   assertEqual(prop1.getDeposit(), 150);
+   assertEqual(prop2.getDeposit(), 300)
+(*@
+\label{testGetNumStars:167}
+@*)
+  );
+  
+ private testGetNumStars : () ==> ()
+  testGetNumStars() == 
+  (
+   assertEqual(prop1.getNumStars(), 3);
+   assertEqual(prop2.getNumStars(), 4)
+(*@
+\label{testGetHost:174}
+@*)
+  );
+  
+ private testGetHost : () ==> ()
+  testGetHost() == 
+  (
+   assertEqual(prop1.getHost(), user1);
+   assertEqual(prop2.getHost(), user2)
+(*@
+\label{testGetEvent:181}
+@*)
+  );
+  
+ private testGetEvent : () ==> ()
+  testGetEvent() == 
+  (
+   assertEqual(prop1.getEvent(), event1);
+   assertEqual(prop2.getEvent(), event1)
+  );
+   
+(*@
+\label{testSetCity:190}
+@*)
+ -- TEST SETS --
+ 
+ private testSetCity: () ==> ()
+  testSetCity() ==
+  (
+   prop1.setCity("paris");
+   prop2.setCity("lisbon")
+(*@
+\label{testSetType:197}
+@*)
+  );
+ 
+ private testSetType: () ==> ()
+  testSetType() ==
+  (
+   prop1.setType(<privateRoom>);
+   prop2.setType(<privateRoom>)
+(*@
+\label{testSetNumRooms:204}
+@*)
+  );
+ 
+ private testSetNumRooms : () ==> ()
+  testSetNumRooms() == 
+  (
+   prop1.setNumRooms(2);
+   prop2.setNumRooms(3)
+(*@
+\label{testSetDeposit:211}
+@*)
+  );
+ 
+ private testSetDeposit : () ==> ()
+  testSetDeposit() == 
+  (
+   prop1.setDeposit(400);
+   prop2.setDeposit(500)
+(*@
+\label{testSetNumStars:218}
+@*)
+  );
+  
+ private testSetNumStars : () ==> ()
+  testSetNumStars() == 
+  (
+   prop1.setNumStars(1);
+   prop2.setNumStars(1)
+(*@
+\label{testSetHost:225}
+@*)
+  );
+  
+ private testSetHost : () ==> ()
+  testSetHost() == 
+  (
+   prop1.setHost(user2);
+   prop2.setHost(user1)
+(*@
+\label{testSetEvent:232}
+@*)
+  );
+  
+ private testSetEvent : () ==> ()
+  testSetEvent() == 
+  (
+   prop1.setEvent(event4);
+   prop2.setEvent(event4)
+  );
+  
+  
+(*@
+\label{testAddAvalilability:242}
+@*)
+ -- TEST ADDS -- 
+ 
+ private testAddAvalilability : () ==> ()
+  testAddAvalilability() ==
+  (
+   prop1.addAvalabilty(date1,date2);
+   prop2.addAvalabilty(date1,date2);
+   assertEqual(prop1.getAvailabilities(), {date1,date2});
+   assertEqual(prop2.getAvailabilities(), {date1,date2})
+  );
+ 
+(*@
+\label{testRemoveAvalilability:253}
+@*)
+ -- TEST REMOVES --
+ 
+ private testRemoveAvalilability : () ==> ()
+  testRemoveAvalilability() ==
+  (
+   prop1.removeAvalabilty(date1,date2);
+   prop2.removeAvalabilty(date1,date2);
+   
+   assertEqual(prop1.getAvailabilities(), {});
+   assertEqual(prop2.getAvailabilities(), {})
+(*@
+\label{testCreatePropInvariant:263}
+@*)
+(*@
+\label{main:263}
+@*)
+  );
+   
+ public static main: () ==> ()
+  main() ==
+  (
+   dcl teste : PropertyTest := new PropertyTest();
+   teste.testGetCity();
+   teste.testGetType();
+   teste.testGetNumRooms();
+   teste.testGetDeposit();
+   teste.testGetNumStars();
+   teste.testGetHost();
+   teste.testGetEvent();
+   
+   teste.testSetCity();
+   teste.testSetType();
+   teste.testSetNumRooms();
+   teste.testSetDeposit();
+   teste.testSetNumStars();
+   teste.testSetHost();
+   teste.testSetEvent();
+   
+   teste.testAddAvalilability();
+   teste.testRemoveAvalilability();
+   
+  );
+end PropertyTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Property:20]{Property} & 20&100.0\% & 40 \\
+\hline
+\hyperref[addAvalabilty:95]{addAvalabilty} & 95&100.0\% & 2 \\
+\hline
+\hyperref[getAvailabilities:63]{getAvailabilities} & 63&100.0\% & 4 \\
+\hline
+\hyperref[getCity:35]{getCity} & 35&100.0\% & 32 \\
+\hline
+\hyperref[getDeposit:47]{getDeposit} & 47&100.0\% & 2 \\
+\hline
+\hyperref[getEvent:59]{getEvent} & 59&100.0\% & 2 \\
+\hline
+\hyperref[getHost:55]{getHost} & 55&100.0\% & 2 \\
+\hline
+\hyperref[getNumRooms:43]{getNumRooms} & 43&100.0\% & 2 \\
+\hline
+\hyperref[getNumStars:51]{getNumStars} & 51&100.0\% & 18 \\
+\hline
+\hyperref[getType:39]{getType} & 39&100.0\% & 2 \\
+\hline
+\hyperref[main:263]{main} & 263&100.0\% & 1 \\
+\hline
+\hyperref[removeAvalabilty:102]{removeAvalabilty} & 102&100.0\% & 2 \\
+\hline
+\hyperref[setCity:67]{setCity} & 67&100.0\% & 2 \\
+\hline
+\hyperref[setDeposit:79]{setDeposit} & 79&100.0\% & 2 \\
+\hline
+\hyperref[setEvent:91]{setEvent} & 91&100.0\% & 2 \\
+\hline
+\hyperref[setHost:87]{setHost} & 87&100.0\% & 2 \\
+\hline
+\hyperref[setNumRooms:75]{setNumRooms} & 75&100.0\% & 2 \\
+\hline
+\hyperref[setNumStars:83]{setNumStars} & 83&100.0\% & 2 \\
+\hline
+\hyperref[setType:71]{setType} & 71&100.0\% & 2 \\
+\hline
+\hyperref[testAddAvalilability:242]{testAddAvalilability} & 242&100.0\% & 1 \\
+\hline
+\hyperref[testCreatePropInvariant:263]{testCreatePropInvariant} & 263&100.0\% & 1 \\
+\hline
+\hyperref[testGetCity:139]{testGetCity} & 139&100.0\% & 3 \\
+\hline
+\hyperref[testGetDeposit:160]{testGetDeposit} & 160&100.0\% & 3 \\
+\hline
+\hyperref[testGetEvent:181]{testGetEvent} & 181&100.0\% & 1 \\
+\hline
+\hyperref[testGetHost:174]{testGetHost} & 174&100.0\% & 1 \\
+\hline
+\hyperref[testGetNumRooms:153]{testGetNumRooms} & 153&100.0\% & 3 \\
+\hline
+\hyperref[testGetNumStars:167]{testGetNumStars} & 167&100.0\% & 1 \\
+\hline
+\hyperref[testGetType:146]{testGetType} & 146&100.0\% & 3 \\
+\hline
+\hyperref[testRemoveAvalilability:253]{testRemoveAvalilability} & 253&100.0\% & 1 \\
+\hline
+\hyperref[testSetCity:190]{testSetCity} & 190&100.0\% & 1 \\
+\hline
+\hyperref[testSetDeposit:211]{testSetDeposit} & 211&100.0\% & 1 \\
+\hline
+\hyperref[testSetEvent:232]{testSetEvent} & 232&100.0\% & 1 \\
+\hline
+\hyperref[testSetHost:225]{testSetHost} & 225&100.0\% & 1 \\
+\hline
+\hyperref[testSetNumRooms:204]{testSetNumRooms} & 204&100.0\% & 1 \\
+\hline
+\hyperref[testSetNumStars:218]{testSetNumStars} & 218&100.0\% & 1 \\
+\hline
+\hyperref[testSetType:197]{testSetType} & 197&100.0\% & 1 \\
+\hline
+\hline
+Property.vdmpp & & 100.0\% & 148 \\
+\hline
+\end{longtable}
+

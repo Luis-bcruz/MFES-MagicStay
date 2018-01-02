@@ -1,0 +1,152 @@
+\begin{vdmpp}[breaklines=true]
+class Date
+
+instance variables
+ private year : nat1;
+ private month : nat1;
+ private day : nat1;
+
+operations
+ -- Constructor
+(*@
+\label{Date:10}
+@*)
+ public Date : nat1*nat1*nat1 ==> Date
+  Date(y,m,d) == 
+  (
+   year := y;
+   month := m;
+   day := d;
+   return self
+  )
+  pre y > 0 and m <= 12 and d <= 31;
+
+ -- Returns the year of the date --
+(*@
+\label{getYear:21}
+@*)
+ public pure getYear : () ==> nat1
+  getYear() == (return year); 
+   
+ -- Returns the month of the date --
+(*@
+\label{getMonth:25}
+@*)
+ public pure getMonth : () ==> nat1
+  getMonth() == (return month); 
+   
+ -- Returns the day of the date --
+(*@
+\label{getDay:29}
+@*)
+ pure public getDay : () ==> nat1
+  getDay() == (return day);
+  
+ -- Compares two dates for example date1 and date2
+ -- If the date1 is "bigger" than the date 2, returns true otherwise, false 
+(*@
+\label{compareDate:34}
+@*)
+ pure public compareDate : Date ==> bool
+  compareDate(d) == 
+  (
+   return ((d.getYear() * d.getMonth() * d.getDay()) < (year * month * day))
+  );
+  
+end Date
+
+
+class DateTest is subclass of MyTestCase
+
+instance variables
+ sdate : Date := new Date(2017, 3, 22);
+ edate : Date := new Date(2017, 3, 24);
+ 
+operations
+
+(*@
+\label{testCompareDate:51}
+@*)
+ private testCompareDate: () ==> ()
+  testCompareDate() ==
+  (
+   assertEqual(edate.compareDate(sdate), true);
+     assertEqual(sdate.compareDate(edate), false)
+  );
+  
+(*@
+\label{testGetYear:58}
+@*)
+ private testGetYear: () ==> ()
+  testGetYear() ==
+  (
+   assertEqual(sdate.getYear(), 2017);
+     assertEqual(edate.getYear(), 2017)
+  );
+  
+(*@
+\label{testGetMonth:65}
+@*)
+ private testGetMonth: () ==> ()
+  testGetMonth() ==
+  (
+   assertEqual(sdate.getMonth(), 3);
+     assertEqual(edate.getMonth(), 3)
+  );
+  
+(*@
+\label{testGetDay:72}
+@*)
+ private testGetDay: () ==> ()
+  testGetDay() ==
+  (
+   assertEqual(sdate.getDay(), 22);
+     assertEqual(edate.getDay(), 24)
+  );
+  
+(*@
+\label{main:79}
+@*)
+ public static main: () ==> ()
+     main() ==
+     (
+      dcl teste : DateTest := new DateTest();
+        teste.testCompareDate();
+       teste.testGetYear();
+       teste.testGetMonth();
+       teste.testGetDay();
+);
+
+end DateTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Date:10]{Date} & 10&100.0\% & 44 \\
+\hline
+\hyperref[compareDate:34]{compareDate} & 34&100.0\% & 2 \\
+\hline
+\hyperref[getDay:29]{getDay} & 29&100.0\% & 4 \\
+\hline
+\hyperref[getMonth:25]{getMonth} & 25&100.0\% & 4 \\
+\hline
+\hyperref[getYear:21]{getYear} & 21&100.0\% & 4 \\
+\hline
+\hyperref[main:79]{main} & 79&100.0\% & 1 \\
+\hline
+\hyperref[testCompareDate:51]{testCompareDate} & 51&100.0\% & 1 \\
+\hline
+\hyperref[testGetDay:72]{testGetDay} & 72&100.0\% & 1 \\
+\hline
+\hyperref[testGetMonth:65]{testGetMonth} & 65&100.0\% & 1 \\
+\hline
+\hyperref[testGetYear:58]{testGetYear} & 58&100.0\% & 1 \\
+\hline
+\hline
+Date.vdmpp & & 100.0\% & 63 \\
+\hline
+\end{longtable}
+

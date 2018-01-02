@@ -1,0 +1,89 @@
+class Date
+
+instance variables
+	private year : nat1;
+	private month : nat1;
+	private day : nat1;
+
+operations
+	-- Constructor
+	public Date : nat1*nat1*nat1 ==> Date
+		Date(y,m,d) == 
+		(
+			year := y;
+			month := m;
+			day := d;
+			return self
+		)
+		pre y > 0 and m <= 12 and d <= 31;
+
+	-- Returns the year of the date --
+	public pure getYear : () ==> nat1
+		getYear() == (return year);	
+			
+	-- Returns the month of the date --
+	public pure getMonth : () ==> nat1
+		getMonth() == (return month);	
+			
+	-- Returns the day of the date --
+	pure public getDay : () ==> nat1
+		getDay() == (return day);
+		
+	-- Compares two dates for example date1 and date2
+	-- If the date1 is "bigger" than the date 2, returns true otherwise, false 
+	pure public compareDate : Date ==> bool
+		compareDate(d) == 
+		(
+			return ((d.getYear() * d.getMonth() * d.getDay()) < (year * month * day))
+		);
+		
+end Date
+
+
+class DateTest is subclass of MyTestCase
+
+instance variables
+	sdate : Date := new Date(2017, 3, 22);
+	edate : Date := new Date(2017, 3, 24);
+	
+operations
+
+	private testCompareDate: () ==> ()
+		testCompareDate() ==
+		(
+			assertEqual(edate.compareDate(sdate), true);
+	    assertEqual(sdate.compareDate(edate), false)
+		);
+		
+	private testGetYear: () ==> ()
+		testGetYear() ==
+		(
+			assertEqual(sdate.getYear(), 2017);
+	    assertEqual(edate.getYear(), 2017)
+		);
+		
+	private testGetMonth: () ==> ()
+		testGetMonth() ==
+		(
+			assertEqual(sdate.getMonth(), 3);
+	    assertEqual(edate.getMonth(), 3)
+		);
+		
+	private testGetDay: () ==> ()
+		testGetDay() ==
+		(
+			assertEqual(sdate.getDay(), 22);
+	    assertEqual(edate.getDay(), 24)
+		);
+		
+	public static main: () ==> ()
+	    main() ==
+	    (
+	    	dcl teste : DateTest := new DateTest();
+        teste.testCompareDate();
+	      teste.testGetYear();
+	      teste.testGetMonth();
+	      teste.testGetDay();
+);
+
+end DateTest

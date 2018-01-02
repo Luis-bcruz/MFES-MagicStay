@@ -1,0 +1,451 @@
+\begin{vdmpp}[breaklines=true]
+class User
+types
+ public string = Utilities`string;
+ public title = <Mr> | <Miss>;
+instance variables
+ private userTitle: title;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private country: string;
+  private city: string;
+  private phoneNumber : nat;
+  private password: string;
+        
+  inv firstName <> "";
+  inv lastName <> "";
+  inv email <> "";
+  inv country <> "";
+  inv city <> "";
+  inv phoneNumber <> 0;
+  inv password <> "";
+        
+operations
+
+ -- User Constructor
+(*@
+\label{User:26}
+@*)
+ public User: title*string*string*string*string*string*nat*string ==> User
+   User(t,fn,ln,e,ct,c,ph,pass) == 
+   (
+   userTitle := t;
+    firstName := fn;
+    lastName := ln;
+    email := e;
+    country := ct;
+    city := c;
+    phoneNumber := ph;
+  password := pass;
+  return self;
+  );
+  
+ -- get user title
+(*@
+\label{getTitle:41}
+@*)
+ public getTitle : () ==> title
+  getTitle() == return userTitle;
+  
+ -- get user first Name
+(*@
+\label{getFirstName:45}
+@*)
+ public getFirstName : () ==> string
+  getFirstName() == return firstName;
+  
+ -- get user last Name
+(*@
+\label{getLastName:49}
+@*)
+ public getLastName : () ==> string
+  getLastName() == return lastName;
+  
+ -- get user email
+(*@
+\label{getEmail:53}
+@*)
+ public getEmail : () ==> string
+  getEmail() == return  email;
+  
+ -- get user's country
+(*@
+\label{getCountry:57}
+@*)
+ public getCountry : () ==> string
+  getCountry() == return country;
+  
+ -- get user's city
+(*@
+\label{getCity:61}
+@*)
+ public getCity : () ==> string
+  getCity() == return city;
+  
+ -- get user's phone number
+(*@
+\label{getPhoneNumber:65}
+@*)
+ public getPhoneNumber : () ==> nat
+  getPhoneNumber() == return phoneNumber;
+  
+ -- get user password
+(*@
+\label{getPassword:69}
+@*)
+ public getPassword : () ==> string
+  getPassword() == return password;
+ 
+ -- set user title Mr or Miss
+(*@
+\label{setTitle:73}
+@*)
+ public setTitle : title ==> ()
+  setTitle(t) == (userTitle := t; return);
+  
+ -- set user first name
+(*@
+\label{setFirstName:77}
+@*)
+ public setFirstName : string ==> ()
+  setFirstName(fn) == (firstName := fn; return);
+ 
+ -- set user last name
+(*@
+\label{setLastName:81}
+@*)
+ public setLastName : string ==> ()
+  setLastName(ln) == (lastName := ln; return);
+  
+ -- set user email address
+(*@
+\label{setEmail:85}
+@*)
+ public setEmail : string ==> ()
+  setEmail(e) == (email := e; return);
+  
+ -- set user country of origin
+(*@
+\label{setCountry:89}
+@*)
+ public setCountry : string ==> ()
+  setCountry(c) == (country := c; return);
+  
+ -- set user city of origin
+(*@
+\label{setCity:93}
+@*)
+ public setCity : string ==> ()
+  setCity(c) == (city := c; return);
+  
+ -- set user phone number
+(*@
+\label{setPhoneNumber:97}
+@*)
+ public setPhoneNumber : nat ==> ()
+  setPhoneNumber(n) == (phoneNumber := n; return);
+ 
+ -- set user password
+(*@
+\label{setPassword:101}
+@*)
+ public setPassword : string ==> ()
+  setPassword(p) == (password := p; return);
+
+end User
+
+class UserTest is subclass of MyTestCase
+
+instance variables
+ user1 : User := new User(<Mr>,"luis","cruz","luis.aa@gmail.com","portugal","porto",912829288,"feup");
+ user2 : User := new User(<Miss>,"maria","alegre","m.a@hormail.com","portugal","porto",922832238,"alegre");
+ user3 : User := new User(<Mr>,"vito","corleone","v.godphaderPM@gmail.com","italia","rome",987654321,"admin");
+ user4 : User := new User(<Mr>,"Tim","Berners-Lee","timWWW@gmail.com","eua","cambridge",123456789,"1234");
+ 
+ date1 : Date := new Date(2017,2,2);
+ date2 : Date := new Date(2017,2,3);
+ date3 : Date := new Date(2017,3,22);
+ date4 : Date := new Date(2017,3,24);
+ date5 : Date := new Date(2017,12,30);
+ 
+ event1 : Event := new Event("AI in 2020","portugal","porto","IT",date1,date2);
+ event2 : Event := new Event("IT and security","italy","rome","IT",date3,date4);
+ event3 : Event := new Event("W3C consvention","eua","cambridge","IT",date1,date2);
+ event4 : Event := new Event("Talk a Bit","portugal","porto","IT",date1,date2);
+ 
+ prop1 : Property := new Property("porto",<Studio>,1,150,3,user1,event1);
+ prop2 : Property := new Property("porto",<Apartment>,2,300,4,user2,event1);
+ prop3 : Property := new Property("rome",<Studio>,1,450,4,user3,event2);
+ prop5 : Property := new Property("rome",<privateRoom>,1,100,2,user3,event2);
+ prop4 : Property := new Property("cambeidge",<Apartment>,3,730,5,user4,event3);
+
+operations
+
+(*@
+\label{testGetTitle:133}
+@*)
+ private testGetTitle : () ==> ()
+  testGetTitle() == 
+  (
+   assertEqual(user1.getTitle(), <Mr>);
+   assertEqual(user2.getTitle(), <Miss>)
+  );
+  
+(*@
+\label{testGetFirstName:140}
+@*)
+ private testGetFirstName : () ==> ()
+  testGetFirstName() == 
+  (
+   assertEqual(user1.getFirstName(), "luis");
+   assertEqual(user2.getFirstName(), "maria")
+  );
+  
+(*@
+\label{testGetLastName:147}
+@*)
+ private testGetLastName : () ==> ()
+  testGetLastName() == 
+  (
+   assertEqual(user1.getLastName(), "cruz");
+   assertEqual(user2.getLastName(), "alegre")
+  );
+  
+(*@
+\label{testGetEmail:154}
+@*)
+ private testGetEmail : () ==> ()
+  testGetEmail() == 
+  (
+   assertEqual(user1.getEmail(), "luis.aa@gmail.com");
+   assertEqual(user2.getEmail(), "m.a@hormail.com")
+  );
+  
+(*@
+\label{testGetCountry:161}
+@*)
+ private testGetCountry : () ==> ()
+  testGetCountry() == 
+  (
+   assertEqual(user1.getCountry(), "portugal");
+   assertEqual(user2.getCountry(), "portugal")
+  );
+  
+(*@
+\label{testGetCity:168}
+@*)
+ private testGetCity : () ==> ()
+  testGetCity() == 
+  (
+   assertEqual(user1.getCity(), "porto");
+   assertEqual(user3.getCity(), "rome")
+  );
+  
+(*@
+\label{testGetPhoneNum:175}
+@*)
+ private testGetPhoneNum : () ==> ()
+  testGetPhoneNum() == 
+  (
+   assertEqual(user1.getPhoneNumber(), 912829288);
+   assertEqual(user2.getPhoneNumber(), 922832238)
+  );
+ 
+(*@
+\label{testGetPassword:182}
+@*)
+ private testGetPassword : () ==> ()
+  testGetPassword() == 
+  (
+   assertEqual(user1.getPassword(), "feup");
+   assertEqual(user2.getPassword(), "alegre")
+  );
+  
+ -- TEST SETS --
+ 
+(*@
+\label{testSetTitle:191}
+@*)
+ private testSetTitle: () ==> ()
+  testSetTitle() ==
+  (
+   user1.setTitle(<Mr>);
+   user2.setTitle(<Miss>)
+  );
+  
+(*@
+\label{testSetFirstName:198}
+@*)
+ private testSetFirstName: () ==> ()
+  testSetFirstName() ==
+  (
+   user1.setFirstName("joao");
+   user2.setFirstName("joana")
+  );
+  
+(*@
+\label{testSetLastName:205}
+@*)
+ private testSetLastName: () ==> ()
+  testSetLastName() ==
+  (
+   user1.setLastName("batista");
+   user2.setLastName("correia")
+  );
+  
+(*@
+\label{testSetEmail:212}
+@*)
+ private testSetEmail: () ==> ()
+  testSetEmail() ==
+  (
+   user1.setEmail("teste123@gmail.com");
+   user2.setEmail("teste@gmail.com")
+  );
+  
+(*@
+\label{testSetCountry:219}
+@*)
+ private testSetCountry: () ==> ()
+  testSetCountry() ==
+  (
+   user1.setCountry("france");
+   user2.setCountry("france")
+  );
+  
+(*@
+\label{testSetCity:226}
+@*)
+ private testSetCity: () ==> ()
+  testSetCity() ==
+  (
+   user1.setCity("paris");
+   user2.setCity("cannes")
+  );
+  
+(*@
+\label{testSetPhoneNum:233}
+@*)
+ private testSetPhoneNum: () ==> ()
+  testSetPhoneNum() ==
+  (
+   user1.setPhoneNumber(912321456);
+   user2.setPhoneNumber(933890765)
+  );
+  
+(*@
+\label{testSetPassword:240}
+@*)
+ private testSetPassword: () ==> ()
+  testSetPassword() ==
+  (
+   user1.setPassword("testPass");
+   user2.setPassword("testPass")
+  );
+  
+(*@
+\label{main:247}
+@*)
+ public static main: () ==> ()
+  main() ==
+  (
+   dcl teste : UserTest := new UserTest();
+   teste.testGetTitle();
+   teste.testGetFirstName();
+   teste.testGetLastName();
+   teste.testGetEmail();
+   teste.testGetCountry();
+   teste.testGetCity();
+   teste.testGetPhoneNum();
+   teste.testGetPassword();
+   teste.testSetTitle();
+   teste.testSetFirstName();
+   teste.testSetLastName();
+   teste.testSetEmail();
+   teste.testSetCountry();
+   teste.testSetCity();
+   teste.testSetPhoneNum();
+   teste.testSetPassword()
+  );
+end UserTest
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[User:26]{User} & 26&100.0\% & 32 \\
+\hline
+\hyperref[getCity:61]{getCity} & 61&100.0\% & 2 \\
+\hline
+\hyperref[getCountry:57]{getCountry} & 57&100.0\% & 2 \\
+\hline
+\hyperref[getEmail:53]{getEmail} & 53&100.0\% & 2 \\
+\hline
+\hyperref[getFirstName:45]{getFirstName} & 45&100.0\% & 2 \\
+\hline
+\hyperref[getLastName:49]{getLastName} & 49&100.0\% & 2 \\
+\hline
+\hyperref[getPassword:69]{getPassword} & 69&100.0\% & 2 \\
+\hline
+\hyperref[getPhoneNumber:65]{getPhoneNumber} & 65&100.0\% & 2 \\
+\hline
+\hyperref[getTitle:41]{getTitle} & 41&100.0\% & 2 \\
+\hline
+\hyperref[main:247]{main} & 247&100.0\% & 1 \\
+\hline
+\hyperref[setCity:93]{setCity} & 93&100.0\% & 2 \\
+\hline
+\hyperref[setCountry:89]{setCountry} & 89&100.0\% & 2 \\
+\hline
+\hyperref[setEmail:85]{setEmail} & 85&100.0\% & 2 \\
+\hline
+\hyperref[setFirstName:77]{setFirstName} & 77&100.0\% & 2 \\
+\hline
+\hyperref[setLastName:81]{setLastName} & 81&100.0\% & 2 \\
+\hline
+\hyperref[setPassword:101]{setPassword} & 101&100.0\% & 2 \\
+\hline
+\hyperref[setPhoneNumber:97]{setPhoneNumber} & 97&100.0\% & 2 \\
+\hline
+\hyperref[setTitle:73]{setTitle} & 73&100.0\% & 2 \\
+\hline
+\hyperref[testGetCity:168]{testGetCity} & 168&100.0\% & 1 \\
+\hline
+\hyperref[testGetCountry:161]{testGetCountry} & 161&100.0\% & 3 \\
+\hline
+\hyperref[testGetEmail:154]{testGetEmail} & 154&100.0\% & 3 \\
+\hline
+\hyperref[testGetFirstName:140]{testGetFirstName} & 140&100.0\% & 1 \\
+\hline
+\hyperref[testGetLastName:147]{testGetLastName} & 147&100.0\% & 1 \\
+\hline
+\hyperref[testGetPassword:182]{testGetPassword} & 182&100.0\% & 1 \\
+\hline
+\hyperref[testGetPhoneNum:175]{testGetPhoneNum} & 175&100.0\% & 1 \\
+\hline
+\hyperref[testGetTitle:133]{testGetTitle} & 133&100.0\% & 1 \\
+\hline
+\hyperref[testSetCity:226]{testSetCity} & 226&100.0\% & 1 \\
+\hline
+\hyperref[testSetCountry:219]{testSetCountry} & 219&100.0\% & 1 \\
+\hline
+\hyperref[testSetEmail:212]{testSetEmail} & 212&100.0\% & 1 \\
+\hline
+\hyperref[testSetFirstName:198]{testSetFirstName} & 198&100.0\% & 1 \\
+\hline
+\hyperref[testSetLastName:205]{testSetLastName} & 205&100.0\% & 1 \\
+\hline
+\hyperref[testSetPassword:240]{testSetPassword} & 240&100.0\% & 1 \\
+\hline
+\hyperref[testSetPhoneNum:233]{testSetPhoneNum} & 233&100.0\% & 1 \\
+\hline
+\hyperref[testSetTitle:191]{testSetTitle} & 191&100.0\% & 1 \\
+\hline
+\hline
+User.vdmpp & & 100.0\% & 85 \\
+\hline
+\end{longtable}
+

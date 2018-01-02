@@ -1,0 +1,59 @@
+class MyTestCase
+/*
+  Superclass for test classes, simpler but more practical than VDMUnit`TestCase. 
+  For proper use, you have to do: New -> Add VDM Library -> IO.
+  JPF, FEUP, MFES, 2014/15.
+*/
+
+operations
+
+	-- Simulates assertion checking by reducing it to pre-condition checking.
+	-- If 'arg' does not hold, a pre-condition violation will be signaled.
+	protected assertTrue: bool ==> ()
+	assertTrue(arg) == 
+		return 
+	pre arg;
+  
+	-- Simulates assertion checking by reducing it to post-condition checking.
+	-- If values are not equal, prints a message in the console and generates 
+	-- a post-conditions violation.
+	protected assertEqual: ? * ? ==> ()
+	assertEqual(expected, actual) == 
+		if expected <> actual then (
+  			IO`print("Actual value (");
+  			IO`print(actual); 
+  			IO`print(") different from expected (");
+  			IO`print(expected);
+  			IO`println(")\n")
+		)
+post expected = actual
+
+end MyTestCase
+
+class AllTests
+
+instance variables
+	d : DateTest := new DateTest();
+	e : EventTest := new EventTest();
+	p : PropertyTest := new PropertyTest();
+	u : UserTest := new UserTest();
+	magicStay : MagicStayTest := new MagicStayTest();
+
+operations
+	public  main: () ==> ()
+		main() ==
+		(
+			IO`print("*** Running all tests ***\n");
+			d.main();
+			IO`print("*** Finished testing Dates ***\n");
+			e.main();
+			IO`print("*** Finished testing Events ***\n");
+			p.main();
+			IO`print("*** Finished testing Properties ***\n");
+			u.main();
+			IO`print("*** Finished testing Users ***\n");
+			magicStay.main();
+			IO`print("***** Finished running the tests *****\n")
+		);
+
+end AllTests
