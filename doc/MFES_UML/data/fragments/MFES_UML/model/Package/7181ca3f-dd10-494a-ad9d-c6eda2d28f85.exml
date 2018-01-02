@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Binding classes" version="3">
+  <DEPS>
+    <ID name="Binding classes" mc="Package" uid="7181ca3f-dd10-494a-ad9d-c6eda2d28f85"/>
+    <COMPID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="879a200c-704d-44e6-ac5e-4fe0384c6279"/>
+    <COMPID name="Optional&lt;p&gt;" mc="Class" uid="bc288b87-2655-480e-b8b9-b73c9feff76e"/>
+    <COMPID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+    <COMPID name="Seq&lt;Any&gt;" mc="Class" uid="c58b8787-c781-499d-a5de-3a5f1fd40e19"/>
+    <COMPID name="Seq&lt;char&gt;" mc="Class" uid="b8fe7d35-69f9-40f5-86da-4b4bf8181910"/>
+    <COMPID name="Set&lt;Date&gt;" mc="Class" uid="30cbb746-db8a-4ee6-a3ec-83aaae7bbf35"/>
+    <COMPID name="Set&lt;Event&gt;" mc="Class" uid="319110ac-7bd5-47d0-9538-ae9f9c38c5f9"/>
+    <COMPID name="Set&lt;Property&gt;" mc="Class" uid="1db59142-a257-4b9c-87c7-ac9820340104"/>
+    <COMPID name="Set&lt;User&gt;" mc="Class" uid="1ddc7f9f-ea49-4725-8a44-11c774200632"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Binding classes" mc="Package" uid="7181ca3f-dd10-494a-ad9d-c6eda2d28f85"/>
+    <PID name="mfes_uml" mc="Package" uid="954dea3c-06e4-4b1a-a817-1e86c535e10c"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Binding classes]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Seq&lt;char&gt;" mc="Class" uid="b8fe7d35-69f9-40f5-86da-4b4bf8181910"/>
+        <COMPID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+        <COMPID name="Optional&lt;p&gt;" mc="Class" uid="bc288b87-2655-480e-b8b9-b73c9feff76e"/>
+        <COMPID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="879a200c-704d-44e6-ac5e-4fe0384c6279"/>
+        <COMPID name="Seq&lt;Any&gt;" mc="Class" uid="c58b8787-c781-499d-a5de-3a5f1fd40e19"/>
+        <COMPID name="Set&lt;User&gt;" mc="Class" uid="1ddc7f9f-ea49-4725-8a44-11c774200632"/>
+        <COMPID name="Set&lt;Property&gt;" mc="Class" uid="1db59142-a257-4b9c-87c7-ac9820340104"/>
+        <COMPID name="Set&lt;Event&gt;" mc="Class" uid="319110ac-7bd5-47d0-9538-ae9f9c38c5f9"/>
+        <COMPID name="Set&lt;Date&gt;" mc="Class" uid="30cbb746-db8a-4ee6-a3ec-83aaae7bbf35"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

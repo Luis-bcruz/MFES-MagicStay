@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="MFES_UML" version="3">
+  <DEPS>
+    <ID name="MFES_UML" mc="AnalystProject" uid="4012f761-f3b0-4188-ab9a-efd762177ee8"/>
+    <COMPID name="MFES_UML" mc="PropertyContainer" uid="493fcf64-107d-4e95-8e56-6b8f0788325f"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="MFES_UML" mc="AnalystProject" uid="4012f761-f3b0-4188-ab9a-efd762177ee8"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[MFES_UML]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="PropertyRoot">
+        <COMPID name="MFES_UML" mc="PropertyContainer" uid="493fcf64-107d-4e95-8e56-6b8f0788325f"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

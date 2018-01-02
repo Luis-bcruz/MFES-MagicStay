@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Basic VDM Types" version="3">
+  <DEPS>
+    <ID name="Basic VDM Types" mc="Package" uid="0e48ca14-8556-4503-86be-50bb67ba9a99"/>
+    <COMPID name="&lt;Apartment&gt;" mc="DataType" uid="e9cbabe9-1b7d-47aa-9260-dd37d626fd8e"/>
+    <COMPID name="&lt;Miss&gt;" mc="DataType" uid="7a593a69-4acf-4c08-8b7b-493c5bf71070"/>
+    <COMPID name="&lt;Mr&gt;" mc="DataType" uid="f8fee0d0-4557-44c2-a8f3-071a6e30c7f2"/>
+    <COMPID name="&lt;Studio&gt;" mc="DataType" uid="46de5536-71c1-4ef6-82ed-52ba29b393f6"/>
+    <COMPID name="&lt;append&gt;" mc="DataType" uid="507b7188-0e6f-465d-8cf3-9a19fb9fe37a"/>
+    <COMPID name="&lt;privateRoom&gt;" mc="DataType" uid="2f133063-4567-4025-95e2-a1c16f18547c"/>
+    <COMPID name="&lt;start&gt;" mc="DataType" uid="627e62b0-4446-4082-bfc0-b3b7c4d4e884"/>
+    <COMPID name="Any" mc="DataType" uid="ff6761d2-26e0-48a0-8cef-a47e88556bda"/>
+    <COMPID name="Void" mc="DataType" uid="2811acae-761c-4287-b44b-6003d97bf368"/>
+    <COMPID name="bool" mc="DataType" uid="d0798a48-289d-49a5-ac85-a5385f38e48b"/>
+    <COMPID name="nat" mc="DataType" uid="b9971e80-2972-4784-808b-95f2a09283ea"/>
+    <COMPID name="nat1" mc="DataType" uid="fd7ad7c3-cdd2-48a9-89bb-f9156044c7a2"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Basic VDM Types" mc="Package" uid="0e48ca14-8556-4503-86be-50bb67ba9a99"/>
+    <PID name="mfes_uml" mc="Package" uid="954dea3c-06e4-4b1a-a817-1e86c535e10c"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Basic VDM Types]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="&lt;append&gt;" mc="DataType" uid="507b7188-0e6f-465d-8cf3-9a19fb9fe37a"/>
+        <COMPID name="&lt;start&gt;" mc="DataType" uid="627e62b0-4446-4082-bfc0-b3b7c4d4e884"/>
+        <COMPID name="&lt;Apartment&gt;" mc="DataType" uid="e9cbabe9-1b7d-47aa-9260-dd37d626fd8e"/>
+        <COMPID name="&lt;Studio&gt;" mc="DataType" uid="46de5536-71c1-4ef6-82ed-52ba29b393f6"/>
+        <COMPID name="&lt;privateRoom&gt;" mc="DataType" uid="2f133063-4567-4025-95e2-a1c16f18547c"/>
+        <COMPID name="&lt;Miss&gt;" mc="DataType" uid="7a593a69-4acf-4c08-8b7b-493c5bf71070"/>
+        <COMPID name="&lt;Mr&gt;" mc="DataType" uid="f8fee0d0-4557-44c2-a8f3-071a6e30c7f2"/>
+        <COMPID name="bool" mc="DataType" uid="d0798a48-289d-49a5-ac85-a5385f38e48b"/>
+        <COMPID name="Any" mc="DataType" uid="ff6761d2-26e0-48a0-8cef-a47e88556bda"/>
+        <COMPID name="Void" mc="DataType" uid="2811acae-761c-4287-b44b-6003d97bf368"/>
+        <COMPID name="nat1" mc="DataType" uid="fd7ad7c3-cdd2-48a9-89bb-f9156044c7a2"/>
+        <COMPID name="nat" mc="DataType" uid="b9971e80-2972-4784-808b-95f2a09283ea"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

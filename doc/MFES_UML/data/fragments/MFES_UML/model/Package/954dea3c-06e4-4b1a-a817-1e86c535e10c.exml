@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="mfes_uml" version="3">
+  <DEPS>
+    <ID name="mfes_uml" mc="Package" uid="954dea3c-06e4-4b1a-a817-1e86c535e10c"/>
+    <COMPID name="AllTests" mc="Class" uid="2ea74bb6-4e53-477c-be99-0bb47c52eba2"/>
+    <COMPID name="Basic VDM Types" mc="Package" uid="0e48ca14-8556-4503-86be-50bb67ba9a99"/>
+    <COMPID name="Binding classes" mc="Package" uid="7181ca3f-dd10-494a-ad9d-c6eda2d28f85"/>
+    <COMPID name="Composite VDM Types" mc="Package" uid="ad75f757-2cbb-409d-86d5-4c452a12b985"/>
+    <COMPID name="Date" mc="Class" uid="473af3ee-5c3d-4633-bf4b-7577e29f9d34"/>
+    <COMPID name="DateTest" mc="Class" uid="87283149-f80c-4c7a-993f-49d26f053067"/>
+    <COMPID name="Event" mc="Class" uid="75187719-683f-4112-90ce-55167064f64d"/>
+    <COMPID name="EventTest" mc="Class" uid="f3a410c6-142f-4f1c-a012-53c93093d968"/>
+    <COMPID name="IO" mc="Class" uid="80c77f47-8400-4be5-b628-85e61dc0d062"/>
+    <COMPID name="MagicStay" mc="Class" uid="8f72cfdd-0a54-4fb0-be08-8992b2c6630e"/>
+    <COMPID name="MagicStayTest" mc="Class" uid="04ddbebb-ea4d-43d1-8a91-754638607469"/>
+    <COMPID name="MyTestCase" mc="Class" uid="7ebd2da6-0242-4fe9-ba6b-781ef738f7f6"/>
+    <COMPID name="Property" mc="Class" uid="0aedb4e0-007f-457c-a031-9c981cb5a877"/>
+    <COMPID name="PropertyTest" mc="Class" uid="82c7df1d-18e6-4822-9bd1-c2875471f952"/>
+    <COMPID name="User" mc="Class" uid="df215041-8c74-4230-ace2-7b4282ea4a8b"/>
+    <COMPID name="UserTest" mc="Class" uid="ece08295-f9f1-4f23-b397-2f37b36e857f"/>
+    <COMPID name="Utilities" mc="Class" uid="1ee6d8b1-d133-4c65-9fb2-9a645ebc795b"/>
+    <COMPID name="mfes_uml Class diagram" mc="ClassDiagram" uid="c31fbc71-e09c-4418-929d-b6cc0cd03d63"/>
+    <COMPID name="mfes_uml Class diagram (1)" mc="ClassDiagram" uid="8ba3c323-91e1-4726-a493-8a42565a0ced"/>
+    <COMPID name="string" mc="Class" uid="b07745d8-a1ea-4ce2-b3a9-e02522cf57c2"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="mfes_uml" mc="Package" uid="954dea3c-06e4-4b1a-a817-1e86c535e10c"/>
+    <PID name="MFES_UML" mc="Project" uid="e18cc242-9077-473a-a3d5-97f9231ed6ec"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[mfes_uml]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Basic VDM Types" mc="Package" uid="0e48ca14-8556-4503-86be-50bb67ba9a99"/>
+        <COMPID name="IO" mc="Class" uid="80c77f47-8400-4be5-b628-85e61dc0d062"/>
+        <COMPID name="Utilities" mc="Class" uid="1ee6d8b1-d133-4c65-9fb2-9a645ebc795b"/>
+        <COMPID name="Date" mc="Class" uid="473af3ee-5c3d-4633-bf4b-7577e29f9d34"/>
+        <COMPID name="DateTest" mc="Class" uid="87283149-f80c-4c7a-993f-49d26f053067"/>
+        <COMPID name="Event" mc="Class" uid="75187719-683f-4112-90ce-55167064f64d"/>
+        <COMPID name="EventTest" mc="Class" uid="f3a410c6-142f-4f1c-a012-53c93093d968"/>
+        <COMPID name="MagicStay" mc="Class" uid="8f72cfdd-0a54-4fb0-be08-8992b2c6630e"/>
+        <COMPID name="MagicStayTest" mc="Class" uid="04ddbebb-ea4d-43d1-8a91-754638607469"/>
+        <COMPID name="Property" mc="Class" uid="0aedb4e0-007f-457c-a031-9c981cb5a877"/>
+        <COMPID name="PropertyTest" mc="Class" uid="82c7df1d-18e6-4822-9bd1-c2875471f952"/>
+        <COMPID name="User" mc="Class" uid="df215041-8c74-4230-ace2-7b4282ea4a8b"/>
+        <COMPID name="UserTest" mc="Class" uid="ece08295-f9f1-4f23-b397-2f37b36e857f"/>
+        <COMPID name="MyTestCase" mc="Class" uid="7ebd2da6-0242-4fe9-ba6b-781ef738f7f6"/>
+        <COMPID name="AllTests" mc="Class" uid="2ea74bb6-4e53-477c-be99-0bb47c52eba2"/>
+        <COMPID name="Composite VDM Types" mc="Package" uid="ad75f757-2cbb-409d-86d5-4c452a12b985"/>
+        <COMPID name="Binding classes" mc="Package" uid="7181ca3f-dd10-494a-ad9d-c6eda2d28f85"/>
+        <COMPID name="string" mc="Class" uid="b07745d8-a1ea-4ce2-b3a9-e02522cf57c2"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="mfes_uml Class diagram" mc="ClassDiagram" uid="c31fbc71-e09c-4418-929d-b6cc0cd03d63"/>
+        <COMPID name="mfes_uml Class diagram (1)" mc="ClassDiagram" uid="8ba3c323-91e1-4726-a493-8a42565a0ced"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

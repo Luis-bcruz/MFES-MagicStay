@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Set&lt;T&gt;" version="3">
+  <DEPS>
+    <ID name="Set&lt;T&gt;" mc="Class" uid="ea4eeee0-ca91-4119-9926-28ee8dca7c27"/>
+    <COMPID name="T" mc="Class" uid="0b666585-f78b-4802-9fb5-2540da5c4b5e"/>
+    <FOREIGNID name="UML2ClassifierTemplateParameter" mc="Stereotype" uid="4a427283-5d09-11df-a996-001302895b2b"/>
+    <FOREIGNID name="UML2RedefinableTemplateSignature" mc="Stereotype" uid="90a0e341-5d0d-11df-a996-001302895b2b"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Set&lt;T&gt;" mc="Class" uid="ea4eeee0-ca91-4119-9926-28ee8dca7c27"/>
+    <PID name="Composite VDM Types" mc="Package" uid="ad75f757-2cbb-409d-86d5-4c452a12b985"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Set<T>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedOperation">
+        <OBJECT>
+          <ID name="T" mc="Operation" uid="1e487d76-d694-4e87-8db6-499efa8a38ba"/>
+          <PID name="Set&lt;T&gt;" mc="Class" uid="ea4eeee0-ca91-4119-9926-28ee8dca7c27"/>
+          <ATTRIBUTES>
+            <ATT name="Concurrency">false</ATT>
+            <ATT name="Final">false</ATT>
+            <ATT name="Passing">MethodOut</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[T]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Template">
+              <OBJECT>
+                <ID name="" mc="TemplateParameter" uid="b1e04d99-36ab-4425-9460-8546f80ad0e2"/>
+                <PID name="Set&lt;T&gt;" mc="Class" uid="ea4eeee0-ca91-4119-9926-28ee8dca7c27"/>
+                <ATTRIBUTES>
+                  <ATT name="DefaultValue"></ATT>
+                  <ATT name="IsValueParameter">false</ATT>
+                  <ATT name="IsElementary">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="IsLeaf">false</ATT>
+                  <ATT name="IsRoot">false</ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="OwnedParameterElement">
+                    <COMPID name="T" mc="Class" uid="0b666585-f78b-4802-9fb5-2540da5c4b5e"/>
+                  </COMP>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UML2ClassifierTemplateParameter" mc="Stereotype" uid="4a427283-5d09-11df-a996-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Extension">
+              <FOREIGNID name="UML2RedefinableTemplateSignature" mc="Stereotype" uid="90a0e341-5d0d-11df-a996-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

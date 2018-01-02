@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Utilities" version="3">
+  <DEPS>
+    <ID name="Utilities" mc="Class" uid="1ee6d8b1-d133-4c65-9fb2-9a645ebc795b"/>
+    <COMPID name="string" mc="Class" uid="554dd3fe-6de6-44f0-bcc8-5bc2d92d89b9"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Utilities" mc="Class" uid="1ee6d8b1-d133-4c65-9fb2-9a645ebc795b"/>
+    <PID name="mfes_uml" mc="Package" uid="954dea3c-06e4-4b1a-a817-1e86c535e10c"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Utilities]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="string" mc="Class" uid="554dd3fe-6de6-44f0-bcc8-5bc2d92d89b9"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

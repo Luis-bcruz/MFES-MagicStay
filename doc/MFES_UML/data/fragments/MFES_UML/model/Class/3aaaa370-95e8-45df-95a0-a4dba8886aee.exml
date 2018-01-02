@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Product&lt;bool,Optional&lt;p&gt;&gt;" version="3">
+  <DEPS>
+    <ID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+    <EXTID name="Optional&lt;p&gt;" mc="Class" uid="bc288b87-2655-480e-b8b9-b73c9feff76e"/>
+    <EXTID name="Product&lt;A,B&gt;" mc="Class" uid="ac01f1bc-e6d7-461e-83c2-8d3f245040a1"/>
+    <EXTID name="bool" mc="DataType" uid="d0798a48-289d-49a5-ac85-a5385f38e48b"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+    <PID name="Binding classes" mc="Package" uid="7181ca3f-dd10-494a-ad9d-c6eda2d28f85"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Product<bool,Optional<p>>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="cfee0bbc-9dec-4d54-8f3b-73a0395d0c0f"/>
+          <PID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="3036a4fd-a279-49ca-87fc-beca252af620"/>
+                <PID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="bool" mc="DataType" uid="d0798a48-289d-49a5-ac85-a5385f38e48b"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="3d2cbf91-1923-412e-9232-ef51435540dc"/>
+                      <PID name="Product&lt;A,B&gt;" mc="Class" uid="ac01f1bc-e6d7-461e-83c2-8d3f245040a1"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="42839c62-554a-4435-9d34-56a7dfb24c17"/>
+                <PID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="3aaaa370-95e8-45df-95a0-a4dba8886aee"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="Optional&lt;p&gt;" mc="Class" uid="bc288b87-2655-480e-b8b9-b73c9feff76e"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="93713d1b-96c1-4e67-ab1c-3e431b2b9ed2"/>
+                      <PID name="Product&lt;A,B&gt;" mc="Class" uid="ac01f1bc-e6d7-461e-83c2-8d3f245040a1"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
