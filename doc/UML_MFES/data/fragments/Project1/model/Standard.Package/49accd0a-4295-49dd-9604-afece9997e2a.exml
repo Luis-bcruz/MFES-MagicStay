@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Binding classes" version="4">
+  <OBJECT>
+    <ID name="Binding classes" mc="Standard.Package" uid="49accd0a-4295-49dd-9604-afece9997e2a"/>
+    <PID name="Package" mc="Standard.Package" uid="e3f1c4b9-d533-420b-8171-a84ed52c58b2"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Binding classes]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="Standard.TemplateBinding" uid="3b6db64e-a6f0-48d7-a1c4-487180194f6e"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="Standard.TemplateParameterSubstitution" uid="d90bb709-f4bd-4a42-aa40-458d8d38f75d"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <FOREIGNID name="char" mc="Standard.DataType" uid="00000004-0000-0007-0000-000000000000"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="Standard.TemplateParameter" uid="5afbe0fc-e8db-4125-a0fb-4b3ec07605d8"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="OwnedElement">
+        <COMPID name="" mc="Standard.Class" uid="10fc88b7-0800-4c90-9336-fdcfde2b65db"/>
+        <COMPID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Standard.Class" uid="99741066-e697-4c9d-bcd0-a836a5dd3186"/>
+        <COMPID name="Optional&lt;IO::filedirective&gt;" mc="Standard.Class" uid="8489d6a5-7e08-452f-ae9b-3e4aa2763c1b"/>
+        <COMPID name="Seq&lt;Any&gt;" mc="Standard.Class" uid="e5b2547c-405f-49e9-b324-e2f5e84f9ced"/>
+        <COMPID name="Set&lt;User&gt;" mc="Standard.Class" uid="e6e1e42f-856b-4091-b9d9-05011dceb514"/>
+        <COMPID name="Set&lt;Property&gt;" mc="Standard.Class" uid="275ef965-c8d1-4aac-97fb-b91bf8d4f9f5"/>
+        <COMPID name="Set&lt;Event&gt;" mc="Standard.Class" uid="ec8d8322-ac2b-42e3-8917-15b8e02bd55b"/>
+        <COMPID name="Set&lt;Date&gt;" mc="Standard.Class" uid="b1155fb5-a026-4768-bbf6-2777590c46a3"/>
+        <COMPID name="Optional&lt;p&gt;" mc="Standard.Class" uid="d6720077-8288-4b98-9902-c5674d77a854"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Package" version="4">
+  <OBJECT>
+    <ID name="Package" mc="Standard.Package" uid="e3f1c4b9-d533-420b-8171-a84ed52c58b2"/>
+    <PID name="Project1" mc="Standard.Project" uid="62f24cde-d87b-4b38-9654-aac2fd2ce81f"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Package]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Basic VDM Types" mc="Standard.Package" uid="b379629d-aa37-4b00-8686-699ee075d865"/>
+        <COMPID name="IO" mc="Standard.Class" uid="a273984a-4300-42ab-a0e9-0437295b63a2"/>
+        <COMPID name="Utilities" mc="Standard.Class" uid="e000a3ea-221e-4722-b0b3-a09356cc464d"/>
+        <COMPID name="Date" mc="Standard.Class" uid="50358fa4-6f67-4139-86c0-5f8f017af5b8"/>
+        <COMPID name="DateTest" mc="Standard.Class" uid="2312227a-e3a1-4838-b042-77abc770d8b9"/>
+        <COMPID name="MyTestCase" mc="Standard.Class" uid="6f574cea-035a-4ee3-a992-b1d55b4899e0"/>
+        <COMPID name="Event" mc="Standard.Class" uid="89c39255-82be-41f2-83c0-661bcc27fa54"/>
+        <COMPID name="EventTest" mc="Standard.Class" uid="e09878c0-9c6d-42da-be32-319307940ff6"/>
+        <COMPID name="User" mc="Standard.Class" uid="608824a8-d442-42df-a084-49f6ee5ba06f"/>
+        <COMPID name="Property" mc="Standard.Class" uid="97c92511-0ad1-4b4d-8e32-ff5dc6f9de57"/>
+        <COMPID name="MagicStay" mc="Standard.Class" uid="6f07921c-b84e-442a-9349-467e7afab6f3"/>
+        <COMPID name="MagicStayTest" mc="Standard.Class" uid="9f7275b6-43c5-493d-84d3-604ef014bccb"/>
+        <COMPID name="PropertyTest" mc="Standard.Class" uid="2e1d9420-cf28-4aa2-b7af-f339b4e97cbe"/>
+        <COMPID name="UserTest" mc="Standard.Class" uid="112cf258-268b-4b06-b1d6-4b3aafbc1f4d"/>
+        <COMPID name="AllTests" mc="Standard.Class" uid="e626b78f-32d6-4735-b6a4-00f1582c5a93"/>
+        <COMPID name="Composite VDM Types" mc="Standard.Package" uid="e9154a5e-2d32-44a0-8272-3807bfb7ee34"/>
+        <COMPID name="Binding classes" mc="Standard.Package" uid="49accd0a-4295-49dd-9604-afece9997e2a"/>
+        <COMPID name="string" mc="Standard.Class" uid="ebd51fcc-6d1d-4ec7-9586-5b2559974c13"/>
+        <OBJECT>
+          <ID name="title_MissMr_1032732086" mc="Standard.Enumeration" uid="ae7dbf24-4d7c-4115-8dfa-620ea7e5ff4c"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[title_MissMr_1032732086]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="&lt;Miss&gt;" mc="Standard.EnumerationLiteral" uid="9a25dcbd-70e6-472c-9987-0e6a6f0d2384"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<Miss>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="&lt;Mr&gt;" mc="Standard.EnumerationLiteral" uid="c7de36b7-c085-4f54-a392-3254e8307b7f"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<Mr>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="title" mc="Standard.Class" uid="a8d14d3a-02cf-445d-af72-45b0af03c9de"/>
+        <COMPID name="string" mc="Standard.Class" uid="b4fde9cf-19a8-484d-9fa4-0141a4e7eb36"/>
+        <COMPID name="string" mc="Standard.Class" uid="e9e2d517-156b-4209-bb94-a2c2a1c615ce"/>
+        <COMPID name="string" mc="Standard.Class" uid="ad89c5eb-e5f5-428a-8071-f51290c26444"/>
+        <COMPID name="apartType" mc="Standard.Class" uid="96e1376e-e2a7-41d8-9948-1a48781d2b8c"/>
+        <OBJECT>
+          <ID name="apartType_ApartmentStudioprivateRoom_1818856353" mc="Standard.Enumeration" uid="a25978f9-47af-4e7f-b9fe-aa16a590fbeb"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[apartType_ApartmentStudioprivateRoom_1818856353]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="&lt;Apartment&gt;" mc="Standard.EnumerationLiteral" uid="3f6b35ec-b27f-4299-8c6d-2fe783b260ec"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<Apartment>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="&lt;Studio&gt;" mc="Standard.EnumerationLiteral" uid="b51f4758-8a0b-42aa-8dca-741963e772c4"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<Studio>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="&lt;privateRoom&gt;" mc="Standard.EnumerationLiteral" uid="997fc585-5b13-4a5a-934d-73fdd6573a76"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<privateRoom>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="Infrastructure.TaggedValue" uid="74bf504b-1c53-409e-ac95-ce71641289ce"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="nocode" mc="Infrastructure.TagType" uid="00000000-0000-36bc-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="p" mc="Standard.Class" uid="df821653-3177-48bf-98aa-ffefc6dc7825"/>
+        <OBJECT>
+          <ID name="filedirective_appendstart__1004785595" mc="Standard.Enumeration" uid="954fefec-49c5-499a-b0d5-99fb026791ff"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[filedirective_appendstart__1004785595]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="&lt;append&gt;" mc="Standard.EnumerationLiteral" uid="57982274-0fa5-423e-b275-22f646aa1e46"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<append>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="&lt;start&gt;" mc="Standard.EnumerationLiteral" uid="75e2d465-46ee-4852-9914-652817c0fd1f"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[<start>]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="filedirective" mc="Standard.Class" uid="89b3fb94-1047-422b-8f63-d3dc93abdfed"/>
+        <COMPID name="string" mc="Standard.Class" uid="e77f166a-e837-45d1-a43b-5935dc66cbbe"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Package Class diagram" mc="Standard.ClassDiagram" uid="6e8b0ce4-c154-4745-96aa-770f4bac3e45"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Optional&lt;p&gt;" version="4">
+  <OBJECT>
+    <ID name="Optional&lt;p&gt;" mc="Standard.Class" uid="d6720077-8288-4b98-9902-c5674d77a854"/>
+    <PID name="Binding classes" mc="Standard.Package" uid="49accd0a-4295-49dd-9604-afece9997e2a"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Optional<p>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="Standard.TemplateBinding" uid="5240c83e-dd87-4c8f-a921-9daa027588dc"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="Standard.TemplateParameterSubstitution" uid="1f0e1e56-530d-4f76-9e19-3c51309ccbdc"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="p" mc="Standard.Class" uid="df821653-3177-48bf-98aa-ffefc6dc7825"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="Standard.TemplateParameter" uid="0f9d3f86-3705-4956-b0ad-c9f65ff22b93"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
